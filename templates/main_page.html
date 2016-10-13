@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="paragraphe">
+        <form action="{{ url_for('launch_playlist_all_prog') }}">
+            <button class="big_button" type="submit">Jouer les bandes annonces</button>
+        </form>
+    </div>
+    <div class="paragraphe">
+        <form action="{{ url_for('stop_playlist') }}">
+            <button class="big_button" type="submit">Arreter les bandes annonces</button>
+        </form>
+    </div>
+
+{% endblock %}
+  

@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="paragraphe">
+        <h2 class="blue">liste de toutes les bandes annonces:</h2>
+        {% for ba in whole_ba_list %}
+            <p class="white align_left">{{ ba }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="paragraphe">
+        <h2 class="blue">liste de tous les slides:</h2>
+        {% for slide in whole_slide_list %}
+            <p class="white align_left">{{ slide }}</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}
