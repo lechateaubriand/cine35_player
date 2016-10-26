@@ -63,13 +63,15 @@ class MyPlaylist():
                 playlist.append(each_ba)
 
         # on ajoute a la playlist, les ecrans de promo apres chaque bande-annonce reelle 
-        # (c'est a dire une bande annonce plus un slide)
-        if env_variables.slide_promo_list != []: 
+        # (c'est a dire une bande annonce plus un slide = PlaylistElement)
+        slide_promo_list = MySlideList(env_variables.slide_promo_directory)
+
+        if slide_promo_list.slide_list_prog != []: 
             new_playlist = []
             for each in playlist:
                 if isinstance(each, PlaylistElement):
                     new_playlist.append(each)
-                    new_playlist.extend(map(Slide, env_variables.slide_promo_list))
+                    new_playlist.extend(slide_promo_list.slide_list_prog)
                 else:
                     new_playlist.append(each)
             playlist = list(new_playlist)

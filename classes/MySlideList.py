@@ -33,10 +33,10 @@ class Slide():
 class MySlideList(MyList):
     """ class pour une liste de slide """
 
-    def __init__(self):
-        self.slide_list_prog = self.select_playlist(self.listdir_fullpath_slide(env_variables.ba_directory), 'prog')
-        self.slide_list_in_past = self.select_playlist(self.listdir_fullpath_slide(env_variables.ba_directory),'past')
-        self.slide_list_all = self.select_playlist(self.listdir_fullpath_slide(env_variables.ba_directory),'all')
+    def __init__(self, directory=env_variables.ba_directory):
+        self.slide_list_prog = self.select_playlist(self.listdir_fullpath_slide(directory), 'prog')
+        self.slide_list_in_past = self.select_playlist(self.listdir_fullpath_slide(directory),'past')
+        self.slide_list_all = self.select_playlist(self.listdir_fullpath_slide(directory),'all')
 
     def __str__(self):
         chaine = "Tous les slides:\n"
