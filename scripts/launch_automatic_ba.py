@@ -43,6 +43,7 @@ def ftp_server_operation():
 def clean():
     my_ba_list = MyBaList()
     my_slide_list = MySlideList()
+    my_slide_promo_list = MySlideList(env_variables.slide_promo_directory)
 
     try:
         my_ba_list.delete(my_ba_list.ba_list_in_past)
@@ -54,7 +55,13 @@ def clean():
         my_slide_list.delete(my_slide_list.slide_list_in_past)
     except:
         logging.error("erreurs en essayant de deleter les slides locaux")
-        print("erreurs en essayant de deleter les slideds locaux")
+        print("erreurs en essayant de deleter les slides locaux")
+
+    try:
+        my_slide_list.delete(my_slide_promo_list.slide_list_in_past)
+    except:
+        logging.error("erreurs en essayant de deleter les slides de promo")
+        print("erreurs en essayant de deleter les slides de promo")
         
 
 def main():
