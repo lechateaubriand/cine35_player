@@ -28,7 +28,6 @@ temps_entre_2_ba = 7
 black_image = '/var/bande_annonces_static/black.jpg'
 # slides de promo
 slide_promo_directory = '/var/bande_annonces_slide_promo'
-#slide_promo_list = ['/var/bande_annonces_slide_promo/2016_10_6__pub_portes_ouvertes.jpg']
 temps_affichage_promo = 7
 
 
