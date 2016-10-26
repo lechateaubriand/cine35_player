@@ -21,6 +21,8 @@ from classes.MyBaList import Ba
 from omxplayer import OMXPlayer
 from dbus.exceptions import DBusException
 logging.config.dictConfig(env_variables.LOGGING)
+logging.getLogger('omxplayer').setLevel(logging.CRITICAL)
+logging.getLogger('dbus').setLevel(logging.CRITICAL)
 
 
 class BaOmxThread(threading.Thread):
