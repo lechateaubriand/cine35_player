@@ -26,7 +26,8 @@ app.config.from_object(__name__)
 
 @app.route('/')
 def index():
-    stop = pickle.load(open( save_file, "rb"))
+    save_file = os.path.join(env_variables.home_ba, 'save.p')
+    stop = pickle.load(open(save_file, "rb"))
     return render_template('main_page.html', stop=stop)
 
 @app.route('/show_playlist')
