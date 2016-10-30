@@ -72,16 +72,15 @@ class BaOmxThread(threading.Thread):
             try:
                 if player.playback_status() == "Playing" and stop is False and time_status is False:
                     sleep(1)
-                    stop = pickle.load(open( save_file, "rb" ))
+                    stop = pickle.load(open( save_file, "rb"))
                     #logging.info("%s, %s, %s" % (player.playback_status(),stop, time_status))  
                 else:
-                    logging.warn("before player quit")
+                    logging.info("player quit")
                     player.quit()
                     # sortie boucle while
                     break
             except DBusException:
-                logging.warn("dbus exception")
-                # cette exception est levee a la fin de la ba, sortie du while
+                # on passe ici a la fin de la ba, sortie du while
                 break
         return stop
 

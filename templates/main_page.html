@@ -2,14 +2,17 @@
 
 {% block content %}
     <div class="paragraphe">
+    {% if stop is True %}
+        <h2 class="blue">Les bande annonces sont arrêtées</h2>
         <form action="{{ url_for('launch_playlist_all_prog') }}">
             <button class="big_button" type="submit">Jouer les bandes annonces</button>
         </form>
-    </div>
-    <div class="paragraphe">
+    {% else %}
+        <h2 class="blue">Les bande annonces sont en cours de diffusion</h2>
         <form action="{{ url_for('stop_playlist') }}">
-            <button class="big_button" type="submit">Arreter les bandes annonces</button>
+            <button class="big_button" type="submit">Arrêter les bandes annonces</button>
         </form>
+    {% endif %}
     </div>
 
 {% endblock %}
