@@ -4,14 +4,14 @@
     <div class="paragraphe white">
     <h2>Lecture des bandes annonces arretee</h2>
     </div>
+        <form action="{{ url_for('index') }}">
+            <button class="big_button" type="submit">Page d'accueil</button>
+        </form>
+    </div>
     <div class="paragraphe">
         <form action="{{ url_for('shutdown_pc') }}">
             <button class="big_button" type="submit">Arreter le PC</button>
         </form>
     </div>
     <div class="paragraphe">
-        <form action="{{ url_for('index') }}">
-            <button class="big_button" type="submit">Page d'accueil</button>
-        </form>
-    </div>
 {% endblock %}
