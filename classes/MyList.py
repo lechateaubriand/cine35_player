@@ -56,7 +56,7 @@ class MyList():
                 for each in mylist_list:
                     if each.end_date_epoch > time():
                         my_list_to_return.append(each)
-                logging.info("select('prog')-liste programmee: %s" % ','.join(map(str, my_list_to_return)))
+                logging.debug("select('prog')-liste programmee: %s" % ','.join(map(str, my_list_to_return)))
             except:
                 logging.error("select('prog')-aucun fichier trouve")
                 raise
@@ -64,7 +64,7 @@ class MyList():
         elif criteria == 'all':
             try:
                 my_list_to_return = mylist_list
-                logging.info("select('all')-liste complete: %s" % ','.join(map(str, my_list_to_return)))
+                logging.debug("select('all')-liste complete: %s" % ','.join(map(str, my_list_to_return)))
             except:
                 logging.error("select('all')-aucun fichier trouve")
                 raise   
@@ -74,7 +74,7 @@ class MyList():
                 for each in mylist_list:
                     if each.end_date_epoch < time():
                         my_list_to_return.append(each)
-                logging.info("select('past')-liste dans le passe: %s" % ','.join(map(str, my_list_to_return)))
+                logging.debug("select('past')-liste dans le passe: %s" % ','.join(map(str, my_list_to_return)))
             except:
                 logging.error("select('past')-aucun fichier trouves")
                 raise   

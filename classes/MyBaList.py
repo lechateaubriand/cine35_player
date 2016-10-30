@@ -88,6 +88,6 @@ class MyBaList(MyList):
                         new_ba_list.append(each)
                 i = i + 1
             self.ba_list_prog = new_ba_list
-        logging.info("liste des ba apres insertion carte fidelite: %s" % ','.join(map(str,self.ba_list_prog)))
+        logging.debug("liste des ba apres insertion carte fidelite: %s" % ','.join(map(str,self.ba_list_prog)))
         
 
