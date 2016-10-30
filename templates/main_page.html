@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="paragraphe">
-    {% if stop is True %}
+    {% if stop %}
         <h2 class="blue">Les bande annonces sont arrêtées</h2>
         <form action="{{ url_for('launch_playlist_all_prog') }}">
             <button class="big_button" type="submit">Jouer les bandes annonces</button>
