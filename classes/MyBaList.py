@@ -76,7 +76,7 @@ class MyBaList(MyList):
         """
         try:
             env_variables.ba_carte_fidelite
-        except NameError:
+        except AttributeError:
             logging.info("pas de bande annonce carte de fidelite a inserer")
         else:
             if env_variables.ba_carte_fidelite != '' and env_variables.ba_carte_fidelite is not None:
