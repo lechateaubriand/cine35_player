@@ -74,20 +74,27 @@ class MyBaList(MyList):
         """
         insere le film sur les cartes de fidelite dans la playlist
         """
-        if env_variables.ba_carte_fidelite != '' and env_variables.ba_carte_fidelite is not None:
-            i = 0
-            new_ba_list = [Ba(env_variables.ba_carte_fidelite)]
-            for each in self.ba_list_prog:
-                if i < env_variables.nbre_ba_entre_deux_carte_fidelite:
-                    new_ba_list.append(each)
-                else:
-                    if i % env_variables.nbre_ba_entre_deux_carte_fidelite == 0:
-                        new_ba_list.append(Ba(env_variables.ba_carte_fidelite))
+        try:
+            env_variables.ba_carte_fidelite
+        except NameError:
+            logging.info("pas de bande annonce carte de fidelite a inserer")
+        else:
+            if env_variables.ba_carte_fidelite != '' and env_variables.ba_carte_fidelite is not None:
+                i = 0
+                new_ba_list = [Ba(env_variables.ba_carte_fidelite)]
+                for each in self.ba_list_prog:
+                    if i < env_variables.nbre_ba_entre_deux_carte_fidelite:
                         new_ba_list.append(each)
                     else:
-                        new_ba_list.append(each)
-                i = i + 1
-            self.ba_list_prog = new_ba_list
+                        if i % env_variables.nbre_ba_entre_deux_carte_fidelite == 0:
+                            new_ba_list.append(Ba(env_variables.ba_carte_fidelite))
+                            new_ba_list.append(each)
+                        else:
+                            new_ba_list.append(each)
+                    i = i + 1
+                self.ba_list_prog = new_ba_list
+            else:
+                logging.info("pas de bande annonce carte de fidelite a inserer")
         logging.debug("liste des ba apres insertion carte fidelite: %s" % ','.join(map(str,self.ba_list_prog)))
         
 
