@@ -3,6 +3,7 @@ import time
 import os.path
 import logging, logging.config
 import env_variables
+import pickle
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 logging.config.dictConfig(env_variables.LOGGING)
