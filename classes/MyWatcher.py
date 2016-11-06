@@ -13,6 +13,7 @@ logging.config.dictConfig(env_variables.LOGGING)
 class Watcher(threading.Thread):
 
     def __init__(self, ba_thread):
+        super(Watcher, self).__init__()
         self.observer = Observer()
         self.ba_thread = ba_thread
 
