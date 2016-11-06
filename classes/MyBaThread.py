@@ -59,7 +59,7 @@ class BaOmxThread(threading.Thread):
             logging.error("display slide return code: %i" % return_code)
             logging.error('image display failed: %s' % str(e))
 
-    def _play_ba(self, ba_path, time_status, save_file):
+    def _play_ba(self, ba_path, time_status):
         """
         function qui lance une bande-annonce dans omx player
         """
@@ -106,7 +106,7 @@ class BaOmxThread(threading.Thread):
                 if isinstance(track, PlaylistElement):
 
                     # diffusion de la ba dans l'omx player
-                    self._play_ba(track.ba_path, stop, time_status, save_file)
+                    self._play_ba(track.ba_path, time_status)
 
                     # affichage du slide avec dates de diffusion entre deux bande-annonces
                     if not self.stoprequest.isSet():
@@ -118,7 +118,7 @@ class BaOmxThread(threading.Thread):
 
                 elif isinstance(track, Ba):
                     # lancement de la ba seule e.g. carte fidelite dans l'omx player
-                    self._play_ba(track.filepath, time_status, save_file)
+                    self._play_ba(track.filepath, time_status)
 
                 time_status = time.time() > timeout
 
