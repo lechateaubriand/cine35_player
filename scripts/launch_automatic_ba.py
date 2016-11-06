@@ -72,7 +72,7 @@ def main():
     playlist = MyPlaylist().playlist
     if env_variables.omx is True:
         if not env_variables.lock.locked():
-            # initialisation à stop = False pour le fichier stop.p
+            # initialisation a stop = False pour le fichier stop.p
             stop = False
             save_file = os.path.join(env_variables.stopnextprevious_dir, env_variables.stop_file)
             pickle.dump(stop, open( save_file, "wb" ))
