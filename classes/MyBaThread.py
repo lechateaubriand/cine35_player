@@ -7,7 +7,6 @@ if os.environ['HOME_BA'] not in sys.path:
         print("error in HOME_BA environment variable")
 import subprocess
 import threading
-#import youtube_dl
 import subprocess
 import time
 import datetime
