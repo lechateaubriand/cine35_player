@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
+import os.path
 import logging, logging.config
 import env_variables
 from watchdog.observers import Observer
