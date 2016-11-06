@@ -10,6 +10,7 @@ from classes.MyBaList import MyBaList
 from classes.MySlideList import MySlideList
 from classes.MyPlaylist import MyPlaylist
 from classes.MyBaThread import BaOmxThread
+from classes.MyWatcher import Watcher
 from random import shuffle
 import logging
 import logging.config
@@ -72,7 +73,8 @@ def main():
     if env_variables.omx is True:
         if not env_variables.lock.locked():
             omx_thread = BaOmxThread(playlist, timer_in_seconds=env_variables.ba_timer)
-            omx_thread.start()
+            watcher = Watcher()
+            watcher.run(omx_thread)
 
 
 if __name__ == "__main__":

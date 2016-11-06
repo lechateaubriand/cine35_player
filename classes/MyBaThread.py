@@ -35,7 +35,9 @@ class BaOmxThread(threading.Thread):
         self.ba_file_list = ba_file_list
         self.timer_in_seconds = timer_in_seconds
         self.name = "etoile_cinema"
-        #self.stoprequest = threading.Event()
+        self.stoprequest = threading.Event()
+        self.nextrequest = threading.Event()
+        self.previousrequest = threading.Event()
 
     def _display_slide(self, slide_path, display_duration):
         """ 
@@ -47,7 +49,9 @@ class BaOmxThread(threading.Thread):
             command = "export DISPLAY=:0;/usr/bin/feh --no-fehbg --bg-scale '" + slide_path +"'"
             return_code = subprocess.call(command, shell=True)
             if return_code == 0:
-                sleep(display_duration)
+                target_time = time.time() + display_duration
+                while time.time() < target_time and not self.stoprequest.isSet():
+                    sleep(0.5)
             else:
                 raise RuntimeError
         except Exception as e:
@@ -55,7 +59,7 @@ class BaOmxThread(threading.Thread):
             logging.error("display slide return code: %i" % return_code)
             logging.error('image display failed: %s' % str(e))
 
-    def _play_ba(self, ba_path, stop, time_status, save_file):
+    def _play_ba(self, ba_path, time_status, save_file):
         """
         function qui lance une bande-annonce dans omx player
         """
@@ -70,9 +74,8 @@ class BaOmxThread(threading.Thread):
         # tant que la ba n'est pas fini ou stoppee, on attend
         while True:
             try:
-                if player.playback_status() == "Playing" and stop is False and time_status is False:
+                if player.playback_status() == "Playing" and not self.stoprequest.isSet() and time_status is False:
                     sleep(1)
-                    stop = pickle.load(open( save_file, "rb"))
                     #logging.info("%s, %s, %s" % (player.playback_status(),stop, time_status))  
                 else:
                     logging.info("player quit")
@@ -82,13 +85,9 @@ class BaOmxThread(threading.Thread):
             except DBusException:
                 # on passe ici a la fin de la ba, sortie du while
                 break
-        return stop
 
     def run(self):
         time_status = False
-        stop = False
-        save_file = os.path.join(env_variables.home_ba, 'save.p')
-        pickle.dump(stop, open( save_file, "wb" ))
         logging.info("in run method")
     
         # tant que l'on a pas appuye sur "stopper les ba", on continue !
@@ -96,21 +95,21 @@ class BaOmxThread(threading.Thread):
         # ajouter un check de la valeur de timer
         timeout = time.time() + self.timer_in_seconds
 
-        while stop is False and time_status is False:
+        while not self.stoprequest.isSet() and time_status is False:
             
             for track in self.ba_file_list:
 
                 # sortie de la boucle for si stop = True
-                if stop or time_status:
+                if self.stoprequest.isSet() or time_status:
                     break
 
                 if isinstance(track, PlaylistElement):
 
                     # diffusion de la ba dans l'omx player
-                    stop = self._play_ba(track.ba_path, stop, time_status, save_file)
+                    self._play_ba(track.ba_path, stop, time_status, save_file)
 
                     # affichage du slide avec dates de diffusion entre deux bande-annonces
-                    if stop is False:
+                    if not self.stoprequest.isSet():
                         self._display_slide(track.slide_path, env_variables.temps_entre_2_ba)
 
                 elif isinstance(track, Slide):
@@ -119,7 +118,7 @@ class BaOmxThread(threading.Thread):
 
                 elif isinstance(track, Ba):
                     # lancement de la ba seule e.g. carte fidelite dans l'omx player
-                    stop = self._play_ba(track.filepath, stop, time_status, save_file)
+                    self._play_ba(track.filepath, time_status, save_file)
 
                 time_status = time.time() > timeout
 
@@ -127,3 +126,12 @@ class BaOmxThread(threading.Thread):
 
         if time_status is True:
             subprocess.call(['sudo', 'shutdown', '-h', 'now'])
+
+    def next(self):
+        self.nextrequest.set()
+
+    def previous(self):
+        self.previousrequest.set()
+
+    def stop(self):
+        self.stoprequest.set()

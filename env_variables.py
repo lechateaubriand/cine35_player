@@ -8,8 +8,14 @@ import threading
 home_ba = '/home/pi/my_envs/cine35_lecteur_ba'
 ba_directory = '/var/bande_annonces'
 ba_timer = 5400
-usb_directory = '/media'
 
+################
+# FILES TO CONTROL OMX PLAYER
+################
+stopnextprevious_dir = os.path.join(home_ba, 'play_files')
+next_file = 'next.p'
+previous_file = 'previous.p'
+stop_file = 'stop.p'
 
 ################
 # DIVERS
@@ -32,7 +38,7 @@ temps_affichage_promo = 7
 
 
 ################
-#   FTP SERVER
+# FTP SERVER
 ################
 ftp = False
 ftp_server = 'ftp.cluster003.ovh.net'

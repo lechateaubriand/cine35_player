@@ -15,7 +15,7 @@ logging.config.dictConfig(env_variables.LOGGING)
 
 def stop():
     stop = True
-    save_file = os.path.join(env_variables.home_ba, 'save.p')
+    save_file = os.path.join(env_variables.stopnextprevious_dir, env_variables.stop_file)
     pickle.dump(stop, open( save_file, "wb" ))
     logging.info('#### PROCEDURE ARRET CLASSIQUE --- arret playlist par bouton wakeup de telecommande')
 
