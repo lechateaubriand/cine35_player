@@ -8,7 +8,8 @@ from classes.MyBaThread import BaOmxThread
 from classes.MyBaList import MyBaList
 from classes.MySlideList import MySlideList
 from random import shuffle
-import scripts
+import scripts.stop_automatic_ba
+import scripts.launch_automatic_ba
 import shutil
 import logging, logging.config
 import sys
