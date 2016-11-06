@@ -100,11 +100,6 @@ class BaOmxThread(threading.Thread):
         env_variables.lock.acquire()
         # ajouter un check de la valeur de timer
         timeout = time.time() + self.timer_in_seconds
-        # on indique que les ba sont en cours de lecture
-        stop = False
-        save_file = os.path.join(env_variables.stopnextprevious_dir, env_variables.stop_file)
-        pickle.dump(stop, open( save_file, "wb" ))
-
 
         while not self.stoprequest.isSet() and time_status is False:
             

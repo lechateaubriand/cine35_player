@@ -18,6 +18,12 @@ class Watcher:
         then it launch the watching of stop.p, previous.p and next.p files
         """
         my_thread.start()
+        
+        # indicate the ba are played
+        stop = False
+        save_file = os.path.join(env_variables.stopnextprevious_dir, env_variables.stop_file)
+        pickle.dump(stop, open( save_file, "wb" ))
+
         event_handler = Handler(my_thread)
         self.observer.schedule(event_handler, env_variables.stopnextprevious_dir)
         self.observer.start()
