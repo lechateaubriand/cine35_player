@@ -9,7 +9,7 @@ from watchdog.events import FileSystemEventHandler
 logging.config.dictConfig(env_variables.LOGGING)
 
 
-class Watcher:
+class Watcher(threading.Thread):
 
     def __init__(self):
         self.observer = Observer()

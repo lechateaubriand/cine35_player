@@ -81,7 +81,7 @@ def main():
             # lancement des lectures
             omx_thread = BaOmxThread(playlist, timer_in_seconds=env_variables.ba_timer)
             watcher = Watcher()
-            watcher.run(omx_thread)
+            watcher.start(omx_thread)
 
 
 if __name__ == "__main__":
