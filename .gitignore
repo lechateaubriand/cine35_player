@@ -6,7 +6,7 @@ local/*
 manage.py
 *.out
 pip*
-*.p
+#*.p
 share/*
 lib/*
 bin/*
