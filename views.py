@@ -8,6 +8,7 @@ from classes.MyBaThread import BaOmxThread
 from classes.MyBaList import MyBaList
 from classes.MySlideList import MySlideList
 from random import shuffle
+import scripts
 import shutil
 import logging, logging.config
 import sys
@@ -49,13 +50,7 @@ def launch_playlist_all_prog():
     """
     playlist = MyPlaylist().playlist
     logging.info("Rasberry: %s" % str(env_variables.omx))
-
-    if env_variables.omx is True:
-        if not env_variables.lock.locked():
-            logging.info("Launching from web site, lock is not set")
-            omx_thread = BaOmxThread(playlist, timer_in_seconds=env_variables.ba_timer)
-            omx_thread.start()
-        
+    scripts.launch_automatic_ba.main()        
     return render_template('main_page.html')
 
 
@@ -64,9 +59,7 @@ def stop_playlist():
     """
     vue utilisee pour arreter la lecture des bande-annonce 
     """
-    stop = True
-    save_file = os.path.join(env_variables.home_ba, 'save.p')
-    pickle.dump(stop, open( save_file, "wb" ))
+    scripts.stop_automatic_ba.main()
     return render_template('stop_playlist.html')
 
 
