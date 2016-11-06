@@ -38,6 +38,12 @@ class BaOmxThread(threading.Thread):
         self.stoprequest = threading.Event()
         self.nextrequest = threading.Event()
         self.previousrequest = threading.Event()
+        
+        # initialise the stop file to True
+        stop = True
+        save_file = os.path.join(env_variables.stopnextprevious_dir, env_variables.stop_file)
+        pickle.dump(stop, open( save_file, "wb" ))
+
 
     def _display_slide(self, slide_path, display_duration):
         """ 
@@ -94,6 +100,11 @@ class BaOmxThread(threading.Thread):
         env_variables.lock.acquire()
         # ajouter un check de la valeur de timer
         timeout = time.time() + self.timer_in_seconds
+        # on indique que les ba sont en cours de lecture
+        stop = False
+        save_file = os.path.join(env_variables.stopnextprevious_dir, env_variables.stop_file)
+        pickle.dump(stop, open( save_file, "wb" ))
+
 
         while not self.stoprequest.isSet() and time_status is False:
             

@@ -27,7 +27,7 @@ app.config.from_object(__name__)
 
 @app.route('/')
 def index():
-    save_file = os.path.join(env_variables.home_ba, env_variables.stop_file)
+    save_file = os.path.join(env_variables.stopnextprevious_dir, env_variables.stop_file)
     stop = pickle.load(open(save_file, "rb"))
     return render_template('main_page.html', stop=stop)
 
