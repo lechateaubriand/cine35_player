@@ -12,6 +12,7 @@ from classes.MyPlaylist import MyPlaylist
 from classes.MyBaThread import BaOmxThread
 from classes.MyWatcher import Watcher
 from random import shuffle
+import pickle
 import logging
 import logging.config
 logging.config.dictConfig(env_variables.LOGGING)
