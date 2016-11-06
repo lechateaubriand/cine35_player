@@ -1,9 +1,9 @@
+# -*- coding: utf-8 -*-
 import time
 import logging, logging.config
 import env_variables
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-from MyThread import MyThread
 logging.config.dictConfig(env_variables.LOGGING)
 
 
@@ -48,11 +48,3 @@ class Handler(FileSystemEventHandler):
 
         if not event.is_directory and event.src_path.endswith(env_variables.stop_file):
             self.my_thread.stop()
-
-
-
-if __name__ == '__main__':
-    t = MyThread()
-    w = Watcher()
-    w.run(t)
-
