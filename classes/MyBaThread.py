@@ -146,8 +146,8 @@ class BaOmxThread(threading.Thread):
                     # pas d'action: poursuite de la boucle while permettant de parcourir la playlist
                     i = i + 1
                 
-                except IndexError:
-                    pass
+            except IndexError:
+                pass
 
         # fin de lecture
         env_variables.lock.release()
