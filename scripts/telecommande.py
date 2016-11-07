@@ -5,7 +5,7 @@ try:
 except:
     print("error in HOME_BA environment variable")
 import env_variables
-from scripts import launch_automatic_ba, stop_and_shutdown, stop_automatic_ba
+from scripts import launch_automatic_ba, stop_and_shutdown, stop_automatic_ba, previous_ba, next_ba
 from time import sleep
 import logging
 import logging.config
