@@ -104,47 +104,50 @@ class BaOmxThread(threading.Thread):
         timeout = time.time() + self.timer_in_seconds
 
         while not self.stoprequest.isSet() and time_status is False:
-            
-            i = 0
-            while (i < len(self.ba_file_list)):
-
-                track = self.ba_file_list[i]
-
-                if isinstance(track, PlaylistElement):
-                    # diffusion de la ba dans l'omx player
-                    self._play_ba(track.ba_path, time_status)
-                    # affichage du slide avec dates de diffusion entre deux bande-annonces
-                    if not self.stoprequest.isSet() and not self.nextrequest.isSet() and not self.previousrequest.isSet():
-                        self._display_slide(track.slide_path, env_variables.temps_entre_2_ba)
-
-                elif isinstance(track, Slide):
-                    # affichage de la promo
-                    self._display_slide(track.filepath, env_variables.temps_affichage_promo)
-
-                elif isinstance(track, Ba):
-                    # lancement de la ba seule e.g. carte fidelite dans l'omx player
-                    self._play_ba(track.filepath, time_status)
-
-                time_status = time.time() > timeout
-
-                # sortie de la boucle for si stop = True
-                if self.stoprequest.isSet() or time_status:
-                    break
-
-                # si next, clear du signal et on continue la boucle immediatement
-                if self.nextrequest.isSet():
+            try:       
+                i = 0
+                while (i < len(self.ba_file_list)):
+    
+                    track = self.ba_file_list[i]
+    
+                    if isinstance(track, PlaylistElement):
+                        # diffusion de la ba dans l'omx player
+                        self._play_ba(track.ba_path, time_status)
+                        # affichage du slide avec dates de diffusion entre deux bande-annonces
+                        if not self.stoprequest.isSet() and not self.previousrequest.isSet():
+                            self._display_slide(track.slide_path, env_variables.temps_entre_2_ba)
+    
+                    elif isinstance(track, Slide):
+                        # affichage de la promo
+                        self._display_slide(track.filepath, env_variables.temps_affichage_promo)
+    
+                    elif isinstance(track, Ba):
+                        # lancement de la ba seule e.g. carte fidelite dans l'omx player
+                        self._play_ba(track.filepath, time_status)
+    
+                    time_status = time.time() > timeout
+    
+                    # sortie de la boucle for si stop = True
+                    if self.stoprequest.isSet() or time_status:
+                        break
+    
+                    # si next, clear du signal et on continue la boucle immediatement
+                    if self.nextrequest.isSet():
+                        i = i + 1
+                        self.nextrequest.clear()
+                        continue
+    
+                    # si previous, clear du signal et on continue la boucle immediatement
+                    if self.previousrequest.isSet():
+                        i = i - 1
+                        self.previousrequest.clear()
+                        continue              
+    
+                    # pas d'action: poursuite de la boucle while permettant de parcourir la playlist
                     i = i + 1
-                    self.nextrequest.clear()
-                    continue
-
-                # si previous, clear du signal et on continue la boucle immediatement
-                if self.previousrequest.isSet():
-                    i = i - 1
-                    self.previousrequest.clear()
-                    continue              
-
-                # pas d'action: poursuite de la boucle while permettant de parcourir la playlist
-                i = i + 1
+                
+                except IndexError:
+                    pass
 
         # fin de lecture
         env_variables.lock.release()
