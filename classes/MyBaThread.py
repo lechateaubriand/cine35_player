@@ -61,12 +61,6 @@ class BaOmxThread(threading.Thread):
             else:
                 raise RuntimeError
 
-            # si demande d'arret, on remet le slide black pour ne pas rester sur le slide d'annonce
-            if self.stoprequest.isSet():
-                logging.info("slide montre: %s" % env_variables.black_image)
-                command = "export DISPLAY=:0;/usr/bin/feh --no-fehbg --bg-scale '" + env_variables.black_image +"'"
-                return_code = subprocess.call(command, shell=True)
-
         except Exception as e:
             logging.error("command is: %s" % command)
             logging.error("display slide return code: %i" % return_code)
@@ -169,6 +163,11 @@ class BaOmxThread(threading.Thread):
 
         # fin de lecture
         env_variables.lock.release()
+
+        # si demande d'arret, on remet le slide black pour ne pas rester sur le slide d'annonce
+        logging.info("slide montre: %s" % env_variables.black_image)
+        command_black = "export DISPLAY=:0;/usr/bin/feh --no-fehbg --bg-scale '" + env_variables.black_image +"'"
+        subprocess.call(command_black, shell=True)
 
         if time_status is True:
             subprocess.call(['sudo', 'shutdown', '-h', 'now'])
