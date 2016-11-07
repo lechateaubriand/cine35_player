@@ -109,6 +109,7 @@ class BaOmxThread(threading.Thread):
                 while (i < len(self.ba_file_list) and i >= 0):
     
                     track = self.ba_file_list[i]
+                    print("i courant: %i" % i)
     
                     if isinstance(track, PlaylistElement):
                         # diffusion de la ba dans l'omx player
@@ -137,17 +138,20 @@ class BaOmxThread(threading.Thread):
                     # si next, clear du signal et on continue la boucle immediatement
                     if self.nextrequest.isSet():
                         i = i + 1
+                        print("i apres next: %i" % i)
                         self.nextrequest.clear()
                         continue
     
                     # si previous, clear du signal et on continue la boucle immediatement
                     if self.previousrequest.isSet():
                         i = i - 1
+                        print("i apres previous: %i" % i)
                         self.previousrequest.clear()
                         continue              
     
                     # pas d'action: poursuite de la boucle while permettant de parcourir la playlist
                     i = i + 1
+                    print("i apres increment normal: %i" % i)
                 
             except IndexError:
                 pass
