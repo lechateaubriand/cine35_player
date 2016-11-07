@@ -50,6 +50,9 @@ class BaOmxThread(threading.Thread):
         display_duration number of timer_in_seconds
         """
         try:
+            logging.info("slide montre: %s" % slide_path)
+            command = "export DISPLAY=:0;/usr/bin/feh --no-fehbg --bg-scale '" + slide_path +"'"
+            return_code = subprocess.call(command, shell=True)
             if return_code == 0:
                 target_time = time.time() + display_duration
                 while time.time() < target_time and not self.stoprequest.isSet() \
@@ -60,12 +63,12 @@ class BaOmxThread(threading.Thread):
 
             # si demande d'arret, on remet le slide black pour ne pas rester sur le slide d'annonce
             if self.stoprequest.isSet():
-                logging.info("slide montre: %s" % slide_path)
+                logging.info("slide montre: %s" % env_variables.black_image)
                 command = "export DISPLAY=:0;/usr/bin/feh --no-fehbg --bg-scale '" + env_variables.black_image +"'"
-                subprocess.call(command, shell=True)
+                return_code = subprocess.call(command, shell=True)
 
         except Exception as e:
-            logging.error("command is:%s" % command)
+            logging.error("command is: %s" % command)
             logging.error("display slide return code: %i" % return_code)
             logging.error('image display failed: %s' % str(e))
 
