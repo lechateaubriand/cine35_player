@@ -108,7 +108,11 @@ class BaOmxThread(threading.Thread):
                 i = 0
                 print("i initial: %i" % i)
                 
-                while (i < len(self.ba_file_list) and i >= 0):
+                while (i < len(self.ba_file_list)):
+
+                    # si index negatif, on sort de la lecture
+                    if (i < 0):
+                        raise IndexError('negative index')
     
                     track = self.ba_file_list[i]
                     print("i courant: %i" % i)
