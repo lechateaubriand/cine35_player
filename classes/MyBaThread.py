@@ -156,7 +156,7 @@ class BaOmxThread(threading.Thread):
                     print("i apres increment normal: %i" % i)
                 
             except IndexError:
-                pass
+                break
 
         # fin de lecture
         env_variables.lock.release()
