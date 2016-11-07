@@ -106,6 +106,8 @@ class BaOmxThread(threading.Thread):
         while not self.stoprequest.isSet() and time_status is False:
             try:       
                 i = 0
+                print("i initial: %i" % i)
+                
                 while (i < len(self.ba_file_list) and i >= 0):
     
                     track = self.ba_file_list[i]
