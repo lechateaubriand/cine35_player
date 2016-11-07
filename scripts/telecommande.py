@@ -29,6 +29,16 @@ while True:
             print("STOP")
             logging.info('stop_ba depuis appui stop / ok telecommande')
             stop_automatic_ba.main()
+
+        elif ircode[0] == 'next':
+            print("NEXT")
+            logging.info('next ba depuis telecommande')
+            next_ba.main()
+
+        elif ircode[0] == 'previous':
+            print("PREVIOUS")
+            logging.info('previous ba depuis telecommande')
+            previous_ba.main()
         
         elif ircode[0] == 'shutdown':
             print("SHUTDOWN")

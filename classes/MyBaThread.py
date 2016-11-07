@@ -55,7 +55,8 @@ class BaOmxThread(threading.Thread):
             return_code = subprocess.call(command, shell=True)
             if return_code == 0:
                 target_time = time.time() + display_duration
-                while time.time() < target_time and not self.stoprequest.isSet():
+                while time.time() < target_time and not self.stoprequest.isSet() \
+                and not self.nextrequest.isSet() and not self.previousrequest.isSet():
                     sleep(0.5)
             else:
                 raise RuntimeError
@@ -79,7 +80,9 @@ class BaOmxThread(threading.Thread):
         # tant que la ba n'est pas fini ou stoppee, on attend
         while True:
             try:
-                if player.playback_status() == "Playing" and not self.stoprequest.isSet() and time_status is False:
+                if player.playback_status() == "Playing" and not self.stoprequest.isSet() \
+                and time_status is False and not self.previousrequest.isSet() \
+                and not self.nextrequest.isSet():
                     sleep(1)
                     #logging.info("%s, %s, %s" % (player.playback_status(),stop, time_status))  
                 else:
@@ -102,19 +105,16 @@ class BaOmxThread(threading.Thread):
 
         while not self.stoprequest.isSet() and time_status is False:
             
-            for track in self.ba_file_list:
+            i = 0
+            while (i <= self.ba_file_list.length):
 
-                # sortie de la boucle for si stop = True
-                if self.stoprequest.isSet() or time_status:
-                    break
+                track = self.ba_file_list[i]
 
                 if isinstance(track, PlaylistElement):
-
                     # diffusion de la ba dans l'omx player
                     self._play_ba(track.ba_path, time_status)
-
                     # affichage du slide avec dates de diffusion entre deux bande-annonces
-                    if not self.stoprequest.isSet():
+                    if not self.stoprequest.isSet() and not self.nextrequest.isSet() and not self.previousrequest.isSet():
                         self._display_slide(track.slide_path, env_variables.temps_entre_2_ba)
 
                 elif isinstance(track, Slide):
@@ -127,6 +127,26 @@ class BaOmxThread(threading.Thread):
 
                 time_status = time.time() > timeout
 
+                # sortie de la boucle for si stop = True
+                if self.stoprequest.isSet() or time_status:
+                    break
+
+                # si next, clear du signal et on continue la boucle immediatement
+                if self.nextrequest.isSet():
+                    i = i + 1
+                    self.nextrequest.clear()
+                    continue
+
+                # si previous, clear du signal et on continue la boucle immediatement
+                if self.previousrequest.isSet():
+                    i = i - 1
+                    self.previousrequest.clear()
+                    continue              
+
+                # pas d'action: poursuite de la boucle while permettant de parcourir la playlist
+                i = i + 1
+
+        # fin de lecture
         env_variables.lock.release()
 
         if time_status is True:
