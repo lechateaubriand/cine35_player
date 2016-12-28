@@ -5,7 +5,7 @@ import threading
 ################
 #  DIRECTORIES
 ################
-home_ba = '/home/pi/my_envs/cine35_lecteur_ba'
+home_ba = '/home/pi/my_envs/cine35_player'
 ba_directory = '/var/bande_annonces'
 ba_timer = 5400
 
@@ -70,7 +70,7 @@ LOGGING = {
         'file': {
             'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'default_formatter',
-            'filename': '/var/log/cine35_lecteur_ba/cine35_lecteur_ba.log',
+            'filename': '/var/log/cine35_player/cine35_player.log',
             'maxBytes': 50000,
             'backupCount': 3,
         }
