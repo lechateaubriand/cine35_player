@@ -1,7 +1,7 @@
 import os
 import time
 import env_variables
-from MyList import MyList
+from classes.MyList import MyList
 from ftplib import FTP
 from simplecrypt import encrypt, decrypt
 import logging, logging.config
