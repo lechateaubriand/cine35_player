@@ -59,7 +59,7 @@ class BaOmxThread(threading.Thread):
                 and not self.nextrequest.isSet() and not self.previousrequest.isSet():
                     sleep(0.5)
             else:
-                raise RuntimeError
+                raise RuntimeError("error when displaying the slide")
 
         except Exception as e:
             logging.error("command is: %s" % command)

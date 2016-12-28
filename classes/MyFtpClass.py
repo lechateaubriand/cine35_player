@@ -17,7 +17,7 @@ class MyFtpClass(FTP):
             self.login(env_variables.ftp_login, self._get_word())
         except Exception:
             logging.error("could not log in on FTP server", exc_info=True)
-            raise RuntimeError
+            raise RuntimeError("error when logging to ftp server")
 
     def __del__(self):
         self.quit()
