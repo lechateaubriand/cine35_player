@@ -12,15 +12,15 @@ import pickle
 class MyFtpClass(FTP):
 
     def __init__(self):
-    	FTP.__init__(self, env_variables.ftp_server)
-    	try:
-    		self.login(env_variables.ftp_login, self._get_word())
-    	except Exception:
+        FTP.__init__(self, env_variables.ftp_server)
+        try:
+            self.login(env_variables.ftp_login, self._get_word())
+        except Exception:
             logging.error("could not log in on FTP server", exc_info=True)
-    	    raise RuntimeError
+            raise RuntimeError
 
     def __del__(self):
-    	self.quit()
+        self.quit()
 
     def _get_word(self):
         """ function used to get file from ftp server"""
