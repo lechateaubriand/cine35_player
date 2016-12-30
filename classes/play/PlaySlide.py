@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import subprocess
 from classes.play.IPlay import IPlay
-from time import sleep
+from time import sleep, time
 import env_variables
 import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
@@ -21,8 +21,8 @@ class PlaySlide(IPlay):
             command = "export DISPLAY=:0;/usr/bin/feh --no-fehbg --bg-scale '" + singleContentSlide.filepath +"'"
             return_code = subprocess.call(command, shell=True)
             if self.display_duration != 0 and return_code == 0:
-                target_time = time.time() + self.display_duration
-                while time.time() < target_time and not play_thread.stoprequest.isSet() \
+                target_time = time() + self.display_duration
+                while time() < target_time and not play_thread.stoprequest.isSet() \
                 and not play_thread.nextrequest.isSet() and not play_thread.previousrequest.isSet():
                     sleep(0.5)
             else:
