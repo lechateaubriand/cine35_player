@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from classes.play.IPlay import IPlay
+from classes.content.PSlide import PSlide
 from omxplayer import OMXPlayer
 from dbus.exceptions import DBusException
 import env_variables

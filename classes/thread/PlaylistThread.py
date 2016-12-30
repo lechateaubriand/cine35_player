@@ -4,8 +4,9 @@ import subprocess
 import time
 import pickle
 import os.path
-import logging, logging.config
 import env_variables
+from classes.content.PSlide import PSlide
+import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
 
 
