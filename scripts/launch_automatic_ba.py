@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+import sys
+import os
+if os.environ['HOME_BA'] not in sys.path:
+    try:
+        sys.path.append(os.environ['HOME_BA'])
+    except:
+        print("error in HOME_BA environment variable")
 import pickle
 from classes.ftp.MyFtp import MyFtp
 from classes.playlist.Playlist import Playlist
