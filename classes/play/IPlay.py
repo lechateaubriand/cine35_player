@@ -4,5 +4,5 @@ import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
 
 class IPlay:
-    def play(self):
+    def play(self, play_thread, icontent):
         raise NotImplementedError

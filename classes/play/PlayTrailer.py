@@ -6,7 +6,7 @@ logging.config.dictConfig(env_variables.LOGGING)
 
 class PlayTrailer(IPlay):
 
-    def play(self, iContentTrailer):
+    def play(self, play_thread, iContentTrailer):
         print("Play trailer")
-        iContentTrailer.movie.play()
-        iContentTrailer.slide.play()
+        iContentTrailer.movie.play(play_thread)
+        iContentTrailer.slide.play(play_thread)
