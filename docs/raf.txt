@@ -1,0 +1,10 @@
+# fait:
+# strategy pattern pour insert et play concernant les trailers
+# adpatation du site web et des scripts de lancement
+
+# raf
+# adapter MyFtp
+# adapter clean
+# adapter promo_slide
+# adapter carte_fidelite
+# adapter next

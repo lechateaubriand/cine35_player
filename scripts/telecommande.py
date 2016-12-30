@@ -4,13 +4,12 @@ try:
     sys.path.append(os.environ['HOME_BA'])
 except:
     print("error in HOME_BA environment variable")
+import lirc
 import env_variables
 from scripts import launch_automatic_ba, stop_and_shutdown, stop_automatic_ba, previous_ba, next_ba
 from time import sleep
-import logging
-import logging.config
+import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
-import lirc
 
 lirc.init('telecommande', blocking=False)
 while True:

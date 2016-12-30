@@ -1,14 +1,7 @@
-import sys
-import os
-import subprocess
-try:
-    sys.path.append(os.environ['HOME_BA'])
-except:
-    print("error in HOME_BA environment variable")
+import os.path
 import pickle
 import env_variables
-import logging
-import logging.config
+import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
 
 
