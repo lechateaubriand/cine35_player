@@ -3,6 +3,7 @@ from classes.play.IPlay import IPlay
 from classes.content.PSlide import PSlide
 from omxplayer import OMXPlayer
 from dbus.exceptions import DBusException
+from time import sleep
 import env_variables
 import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
