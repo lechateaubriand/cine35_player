@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from classes.content.PSlide import PSlide
-from classes.insert.InsertAtEnd import InsertAtEnd
+from classes.insert.InsertSeveralTimes import InsertSeveralTimes
 import env_variables
 import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
