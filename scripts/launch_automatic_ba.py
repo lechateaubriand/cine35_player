@@ -94,4 +94,4 @@ if __name__ == "__main__":
     if env_variables.ftp is True:
         ftp_server_operation()
     clean()
-    #main()
+    main()
