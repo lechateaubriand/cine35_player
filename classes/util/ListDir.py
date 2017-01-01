@@ -51,8 +51,8 @@ class ListDir:
         fonction qui efface les fichiers listes
         :param mylist: liste des fichiers a effacer (path des fichiers)
         """
-        print(mylist_list)
-        for each in mylist_list:
+        print(mylist)
+        for each in mylist:
             if os.path.isfile(each):
                 os.remove(each)
 
