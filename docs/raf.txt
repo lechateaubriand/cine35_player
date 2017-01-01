@@ -4,7 +4,6 @@
 
 # raf
 # adapter MyFtp -- a tester
-# adapter clean -- a tester
 # adapter promo_slide
 # adapter carte_fidelite
 # adapter next

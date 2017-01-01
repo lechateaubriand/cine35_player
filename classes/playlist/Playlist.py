@@ -41,7 +41,7 @@ class Playlist():
 
         playlist = []
 
-        # lister les fichiers de /var/bande-annonces et creer les trailers
+        # lister les fichiers de /var/cine35/trailer et creer les trailers
         self.movie_list = ListDir.list_directory(env_variables.trailer_directory, 'mp4')
         self.slide_list = ListDir.list_directory(env_variables.trailer_directory, 'jpg')
 
@@ -54,13 +54,12 @@ class Playlist():
         if env_variables.random_play is True:
             shuffle(playlist)
 
-        # lister les ecrans de promo et les ajouter a la playlist apres chaque trailer
-        # slide_promo_list = ListDir.list_directory(env_variables.slide_promo_directory, 'jpg')
+        # inserer les looped_slide
+        for each_looped_slide in env_variables.looped_movies:
+            looped_slide_path = os.path.join(env_variables.looped_movie_directory, each_looped_slide["name"])
+            slide = LoopedSlide(looped_slide_path, each_looped_slide["start_index"], each_looped_slide[" loop_step"])
+            playlist = slide.insert(playlist)
 
-        # if slide_promo_list != []: 
-        #     for each_promo in slide_promo_list:
-        #         promo = PSlide(each_promo, env_variables.temps_affichage_promo)
-        #         playlist = promo.insert(playlist)
         return playlist
 
 

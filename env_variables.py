@@ -29,14 +29,14 @@ stop_file = 'stop.p'
 omx = True
 background_image = '/var/cine35/static/2025_12_01__black.jpg'
 black_image = '/var/bande_annonces_static/2025_12_01__black.jpg'
+random_play = True
 
 
 ################
 # LOOPED MOVIES
 ################
 looped_movie_directory = '/var/cine35/looped_movie'
-looped_movies = [{ 'name': '2025_12_01__carte_fidelite.mp4', 'loop_rythm': 2, 'start_place': 0 }]
-random_play = True
+looped_movies = [{ 'name': '2025_12_01__carte_fidelite.mp4', 'start_index': 0, 'loop_step': 2 }]
 
 ba_carte_fidelite = '/var/bande_annonces_static/2025_12_01__carte_fidelite.mp4'
 nbre_ba_entre_deux_carte_fidelite = 2
