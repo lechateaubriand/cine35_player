@@ -46,9 +46,10 @@ class ListDir:
         return file_list
 
     @staticmethod
-    def delete(self, mylist_list):
+    def delete(mylist):
         """
         fonction qui efface les fichiers listes
+        :param mylist: liste des fichiers a effacer (path des fichiers)
         """
         print(mylist_list)
         for each in mylist_list:
