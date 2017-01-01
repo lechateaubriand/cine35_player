@@ -1,5 +1,5 @@
 import os.path
-from time import time
+from time import time, strptime, mktime
 
 
 class ListDir:
@@ -52,3 +52,23 @@ class ListDir:
         for each in mylist_list:
             if os.path.isfile(each.filepath):
                 os.remove(each.filepath)
+
+    @staticmethod
+    def convert_files_into_list_of_dict(self, filepath_list):
+        """
+        fonction that converts a list of filepath [/media/usb/2016_8_26__titre_film1.mp4, /media/usb/2016_8_26__titre_film2.mp4]
+        into a list of dict:
+        [ {filepath: /media/usb/2016_8_26__titre_film1.mp4,
+           end_date_epoch: epoch time}, 
+          {filepath: /media/usb/2016_8_26__titre_film1.mp4,
+           end_date_epoch: epoch time},  
+        ]  
+        """
+        list_to_return = []
+        for each in filepath_list:
+            l_dict = {}
+            each_end_date = strptime(os.path.basename(each).split("__")[0], "%Y_%m_%d")
+            l_dict["end_date_epoch"] = mktime(each_end_date)
+            l_dict["filepath"] = each
+            list_to_return.append(l_dict)
+        return list_to_return

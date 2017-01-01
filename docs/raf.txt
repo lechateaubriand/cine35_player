@@ -3,7 +3,7 @@
 # adpatation du site web et des scripts de lancement
 
 # raf
-# adapter MyFtp
+# adapter MyFtp -- a tester
 # adapter clean -- a tester
 # adapter promo_slide
 # adapter carte_fidelite

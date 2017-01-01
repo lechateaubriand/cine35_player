@@ -31,12 +31,12 @@ def ftp_server_operation():
         return
     
     try:
-        ftp.download_ba_from_ftpserver()
+        ftp.download_trailer_from_ftpserver()
     except Exception:
         logging.error("erreurs en essayant de deleter les bande-annonces sur le serveur FTP", exc_info=True)
 
     try:
-        ftp.delete_past_ba_in_ftpserver()
+        ftp.delete_past_trailer_in_ftpserver()
     except Exception:
         logging.error("erreurs en essayant de deleter les bande-annonces sur le serveur FTP", exc_info=True)
 
