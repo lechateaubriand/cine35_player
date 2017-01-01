@@ -36,8 +36,8 @@ class ListDir:
         # verification que le fichier commence par un 2 et que la date est separee
         # du reste du nom de fichier par "__" et qu'elle est dans le passe
         for filename in os.listdir(directory):
-            end_date = strptime(os.path.basename(each).split("__")[0], "%Y_%m_%d")
-            end_date_epoch = mktime(each_end_date)
+            end_date = strptime(filename.split("__")[0], "%Y_%m_%d")
+            end_date_epoch = mktime(end_date)
             if time_condition == 'past' and end_date_epoch < time() and filename.split(".")[-1] == extension:
                 file_list.append(os.path.join(directory, filename))
             elif time_condition == 'future' and end_date_epoch > time() and filename.split(".")[-1] == extension:
@@ -50,8 +50,8 @@ class ListDir:
         fonction qui efface les fichiers listes
         """
         for each in mylist_list:
-            if os.path.isfile(each.filepath):
-                os.remove(each.filepath)
+            if os.path.isfile(each):
+                os.remove(each)
 
     @staticmethod
     def convert_files_into_list_of_dict(self, filepath_list):

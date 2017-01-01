@@ -48,6 +48,7 @@ def clean():
     try:
         movie_in_past = ListDir.list_directory_in_past(env_variables.trailer_directory, 'mp4', 'past')
         movie_path_in_past = [ os.path.join(env_variables.trailer_directory, x) for x in movie_in_past]
+        logging.info("movie a deleter: %s" % movie_path_in_past)
         ListDir.delete(movie_path_in_past)
     except Exception as e:
         logging.error("erreur en essayant de deleter les bande-annonces passees: %s" % str(e))
