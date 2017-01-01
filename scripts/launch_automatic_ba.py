@@ -47,30 +47,25 @@ def clean():
     """
     try:
         movie_in_past = ListDir.list_directory_in_past(env_variables.trailer_directory, 'mp4', 'past')
-        movie_path_in_past = [ os.path.join(env_variables.trailer_directory, x) for x in movie_in_past]
-        logging.info("movie a deleter: %s" % movie_path_in_past)
-        ListDir.delete(movie_path_in_past)
+        ListDir.delete(movie_in_past)
     except Exception as e:
         logging.error("erreur en essayant de deleter les bande-annonces passees: %s" % str(e))
 
     try:
         slide_in_past = ListDir.list_directory_in_past(env_variables.trailer_directory, 'jpg', 'past')
-        slide_path_in_past = [ os.path.join(env_variables.trailer_directory, x) for x in slide_in_past]
-        ListDir.delete(slide_path_in_past)
+        ListDir.delete(slide_in_past)
     except Exception as e:
         logging.error("erreur en essayant de deleter les slides passes: %s" % str(e))
 
     try:
         looped_movie_in_past = ListDir.list_directory_in_past(env_variables.looped_movie_directory, 'mp4', 'past')
-        looped_movie_path_in_past = [ os.path.join(env_variables.looped_movie_directory, x) for x in looped_movie_in_past]
-        ListDir.delete(looped_movie_path_in_past)
+        ListDir.delete(looped_movie_in_past)
     except Exception as e:
         logging.error("erreur en essayant de deleter les looped movies passes: %s" % str(e))
 
     try:
         looped_slide_in_past = ListDir.list_directory_in_past(env_variables.looped_slide_directory, 'jpg', 'past')
-        looped_slide_path_in_past = [ os.path.join(env_variables.looped_slide_directory, x) for x in looped_slide_in_past]
-        ListDir.delete(looped_slide_path_in_past)
+        ListDir.delete(looped_slide_in_past)
     except Exception as e:
         logging.error("erreur en essayant de deleter les looped slides passes: %s" % str(e))
 
