@@ -15,6 +15,7 @@ import os.path
 from random import shuffle
 from classes.util.ListDir import ListDir
 from classes.content.Trailer import Trailer
+from classes.content.LoopedSlide import LoopedSlide
 import env_variables
 import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
