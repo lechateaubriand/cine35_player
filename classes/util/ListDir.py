@@ -42,6 +42,7 @@ class ListDir:
                 file_list.append(os.path.join(directory, filename))
             elif time_condition == 'future' and end_date_epoch > time() and filename.split(".")[-1] == extension:
                 file_list.append(os.path.join(directory, filename))
+        print(file_list)
         return file_list
 
     @staticmethod
@@ -49,6 +50,7 @@ class ListDir:
         """
         fonction qui efface les fichiers listes
         """
+        print(mylist_list)
         for each in mylist_list:
             if os.path.isfile(each):
                 os.remove(each)
