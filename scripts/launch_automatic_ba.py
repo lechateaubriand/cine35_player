@@ -11,6 +11,7 @@ from classes.ftp.MyFtp import MyFtp
 from classes.playlist.Playlist import Playlist
 from classes.thread.PlaylistThread import PlaylistThread
 from classes.thread.Watcher import Watcher
+from classes.util.ListDir import ListDir
 import env_variables
 import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
@@ -40,6 +41,40 @@ def ftp_server_operation():
         logging.error("erreurs en essayant de deleter les bande-annonces sur le serveur FTP", exc_info=True)
 
 
+def clean():
+    """
+    fonction qui enleve les bande-annonces qui sont dans le passe
+    """
+    try:
+        movie_in_past = ListDir.list_directory_in_past(env_variables.trailer_directory, 'mp4', 'past')
+        movie_path_in_past = [ os.path.join(env_variables.trailer_directory, x) for x in movie_in_past]
+        ListDir.delete(movie_path_in_past)
+    except Exception as e:
+        logging.error("erreur en essayant de deleter les bande-annonces passees: %s" % str(e))
+
+    try:
+        slide_in_past = ListDir.list_directory_in_past(env_variables.trailer_directory, 'jpg', 'past')
+        slide_path_in_past = [ os.path.join(env_variables.trailer_directory, x) for x in slide_in_past]
+        ListDir.delete(slide_path_in_past)
+    except Exception as e:
+        logging.error("erreur en essayant de deleter les slides passes: %s" % str(e))
+
+    try:
+        looped_movie_in_past = ListDir.list_directory_in_past(env_variables.looped_movie_directory, 'mp4', 'past')
+        looped_movie_path_in_past = [ os.path.join(env_variables.looped_movie_directory, x) for x in looped_movie_in_past]
+        ListDir.delete(looped_movie_path_in_past)
+    except Exception as e:
+        logging.error("erreur en essayant de deleter les looped movies passes: %s" % str(e))
+
+    try:
+        looped_slide_in_past = ListDir.list_directory_in_past(env_variables.looped_slide_directory, 'jpg', 'past')
+        looped_slide_path_in_past = [ os.path.join(env_variables.looped_slide_directory, x) for x in looped_slide_in_past]
+        ListDir.delete(looped_slide_path_in_past)
+    except Exception as e:
+        logging.error("erreur en essayant de deleter les looped slides passes: %s" % str(e))
+
+
+
 def main():
     logging.info('################################')
     logging.info('#### PROCEDURE DEMARRAGE #######')
@@ -53,7 +88,7 @@ def main():
             pickle.dump(stop, open( save_file, "wb" ))
 
             # lancement des lectures
-            omx_thread = PlaylistThread(playlist, timer_in_seconds=env_variables.ba_timer)
+            omx_thread = PlaylistThread(playlist, timer_in_seconds=env_variables.shutdown_timer)
             watcher = Watcher(omx_thread)
             watcher.start()
 
@@ -62,5 +97,5 @@ if __name__ == "__main__":
 
     if env_variables.ftp is True:
         ftp_server_operation()
-#    clean()
+    clean()
     main()
