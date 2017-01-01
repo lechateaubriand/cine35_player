@@ -55,6 +55,7 @@ temps_entre_2_ba = 7
 # LOOPED SLIDES
 ################
 looped_slide_directory = '/var/cine35/looped_slide'
+looped_slides = [{ 'name': '2025_12_12__halloween.jpg', 'start_index': 0, 'loop_step': 2 }]
 looped_slide_duration = 7
 
 # slides de promo

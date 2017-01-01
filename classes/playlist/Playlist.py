@@ -56,8 +56,8 @@ class Playlist():
             shuffle(playlist)
 
         # inserer les looped_slide
-        for each_looped_slide in env_variables.looped_movies:
-            looped_slide_path = os.path.join(env_variables.looped_movie_directory, each_looped_slide["name"])
+        for each_looped_slide in env_variables.looped_slides:
+            looped_slide_path = os.path.join(env_variables.looped_slide_directory, each_looped_slide["name"])
             slide = LoopedSlide(looped_slide_path, each_looped_slide["start_index"], each_looped_slide["loop_step"])
             playlist = slide.insert(playlist)
 
