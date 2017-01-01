@@ -4,7 +4,8 @@
 
 # raf
 # adapter MyFtp
-# adapter clean
+# adapter clean -- a tester
 # adapter promo_slide
 # adapter carte_fidelite
 # adapter next
+# adapter env_variables -- a tester

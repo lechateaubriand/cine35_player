@@ -14,7 +14,7 @@ class Trailer(IContent):
     def __init__(self, movie_filepath, slide_filepath):
         super(Trailer, self).__init__(InsertAtEnd(), PlayTrailer())
         self.movie = Movie(movie_filepath)
-        self.slide = PSlide(slide_filepath, env_variables.temps_entre_2_ba)
+        self.slide = PSlide(slide_filepath, env_variables.trailer_slide_duration)
 
     def __str__(self):
         to_print = str(self.movie) + "\n"

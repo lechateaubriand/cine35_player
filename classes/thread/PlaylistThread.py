@@ -81,8 +81,8 @@ class PlaylistThread(threading.Thread):
         env_variables.lock.release()
 
         # si demande d'arret, on remet le slide black pour ne pas rester sur le slide d'annonce
-        black_slide = PSlide(env_variables.black_image, 0)
-        black_slide.play(self)
+        background_slide = PSlide(env_variables.background_image, 0)
+        background_slide.play(self)
 
         if time_status is True:
             subprocess.call(['sudo', 'shutdown', '-h', 'now'])

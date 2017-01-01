@@ -42,8 +42,8 @@ class Playlist():
         playlist = []
 
         # lister les fichiers de /var/bande-annonces et creer les trailers
-        self.movie_list = ListDir.list_directory(env_variables.ba_directory, 'mp4')
-        self.slide_list = ListDir.list_directory(env_variables.ba_directory, 'jpg')
+        self.movie_list = ListDir.list_directory(env_variables.trailer_directory, 'mp4')
+        self.slide_list = ListDir.list_directory(env_variables.trailer_directory, 'jpg')
 
         for each_movie in self.movie_list:
             slidepath = os.path.splitext(each_movie)[0] + '.jpg'

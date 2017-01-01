@@ -21,8 +21,8 @@ class PlayMovie(IPlay):
 
         # affichage d'un ecran noir pour ne pas voir l'ecran de la ba precedente
         # brievement avant le changement d'ecran
-        black_slide = PSlide(env_variables.black_image, 1)
-        black_slide.play(play_thread)
+        background_slide = PSlide(env_variables.background_image, 1)
+        background_slide.play(play_thread)
         logging.info("ba: %s, status: %s" % (singleContentMovie.filepath, player.playback_status()))                        
 
         # tant que la ba n'est pas fini ou stoppee, on attend

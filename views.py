@@ -29,9 +29,9 @@ def show_playlist():
     # selectionner tous les repertoires du lieu de stockage
     # et les mettre sous forme de dictionnaire
     # numero de semaine: [liste des fichiers]
-    movie_list = ListDir.list_directory(env_variables.ba_directory, 'mp4')
+    movie_list = ListDir.list_directory(env_variables.trailer_directory, 'mp4')
     whole_movie_list = sorted([os.path.basename(x) for x in movie_list])
-    slide_list = ListDir.list_directory(env_variables.ba_directory, 'jpg')
+    slide_list = ListDir.list_directory(env_variables.trailer_directory, 'jpg')
     whole_slide_list = sorted([os.path.basename(x) for x in slide_list])
     return render_template('show_playlist.html', whole_ba_list=whole_movie_list, whole_slide_list=whole_slide_list)
 

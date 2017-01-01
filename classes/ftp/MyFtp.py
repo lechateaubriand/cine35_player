@@ -35,13 +35,13 @@ class MyFtp(FTP):
         """
         logging.info("in download_ba_from_ftp server")
 
-        # get the file names already in ba_directory into a list
+        # get the file names already in trailer_directory into a list
         # they shall not be downloaded again
-        my_ba_list = ListDir.list_directory(env_variables.ba_directory, 'mp4')
+        my_ba_list = ListDir.list_directory(env_variables.trailer_directory, 'mp4')
         local_ba_list = [ os.path.basename(x) for x in my_ba_list ]
 
         # get the list of files
-        os.chdir(env_variables.ba_directory) #changes the active dir - this is where downloaded files will be saved to
+        os.chdir(env_variables.trailer_directory) #changes the active dir - this is where downloaded files will be saved to
 
         ftp_files_mp4 = self.nlst(env_variables.ftp_filematch) # filter the file listing
         logging.info("list of files on ftp server: %s" % ftp_files_mp4)
