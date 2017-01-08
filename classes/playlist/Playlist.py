@@ -16,6 +16,7 @@ from random import shuffle
 from classes.util.ListDir import ListDir
 from classes.content.Trailer import Trailer
 from classes.content.LoopedSlide import LoopedSlide
+from classes.content.LoopedMovie import LoopedMovie
 import env_variables
 import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
@@ -54,6 +55,12 @@ class Playlist():
 
         if env_variables.random_play is True:
             shuffle(playlist)
+
+        # inserer les looped_movie
+        for each_looped_movie in env_variables.looped_movies:
+            looped_movie_path = os.path.join(env_variables.looped_movie_directory, each_looped_movie["name"])
+            movie = LoopedMovie(looped_movie_path, each_looped_movie["start_index"], each_looped_movie["loop_step"])
+            playlist = movie.insert(playlist)
 
         # inserer les looped_slide
         for each_looped_slide in env_variables.looped_slides:
