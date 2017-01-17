@@ -26,14 +26,25 @@ def index():
 
 @app.route('/show_playlist')
 def show_playlist():
-    # selectionner tous les repertoires du lieu de stockage
-    # et les mettre sous forme de dictionnaire
-    # numero de semaine: [liste des fichiers]
-    movie_list = ListDir.list_directory(env_variables.trailer_directory, 'mp4')
-    whole_movie_list = sorted([os.path.basename(x) for x in movie_list])
+    
+    trailer_list = ListDir.list_directory(env_variables.trailer_directory, 'mp4')
+    sorted_trailer_list = sorted([os.path.basename(x) for x in trailer_list])
+
     slide_list = ListDir.list_directory(env_variables.trailer_directory, 'jpg')
-    whole_slide_list = sorted([os.path.basename(x) for x in slide_list])
-    return render_template('show_playlist.html', whole_ba_list=whole_movie_list, whole_slide_list=whole_slide_list)
+    sorted_slide_list = sorted([os.path.basename(x) for x in slide_list])
+
+    looped_movie_list = ListDir.list_directory(env_variables.looped_movie_directory, 'mp4')
+    sorted_looped_movie_list = sorted([os.path.basename(x) for x in looped_movie_list])
+
+    looped_slide_list = ListDir.list_directory(env_variables.looped_slide_directory, 'jpg')
+    sorted_looped_slide_list = sorted([os.path.basename(x) for x in looped_slide_list])
+
+
+    return render_template('show_playlist.html', 
+                           trailer_list=sorted_trailer_list, 
+                           slide_list=sorted_slide_list, 
+                           looped_movie_list=sorted_looped_movie_list, 
+                           looped_slide_list=sorted_looped_slide_list)
 
 
 @app.route('/launch_playlist_all_prog')
