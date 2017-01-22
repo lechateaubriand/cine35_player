@@ -61,7 +61,7 @@ class MyFtp(FTP):
             fhandle = open(filename_mp4, 'wb')
             self.retrbinary('RETR ' + filename_mp4, fhandle.write)
             fhandle.close()
-            
+
             # download corresponding slide
             filename_jpg = '.'.join([filename_mp4.split('.')[0], 'jpg'])
             logging.info('Getting ' + filename_jpg)
@@ -69,6 +69,7 @@ class MyFtp(FTP):
                 fhandle = open(filename_jpg, 'wb')
                 self.retrbinary('RETR ' + filename_jpg, fhandle.write)
                 fhandle.close()
+
             except Exception:
                 logging.error("Could not download {} from ftp server".format(filename_jpg), exc_info=True)
 
@@ -105,3 +106,35 @@ class MyFtp(FTP):
                 logging.error("could not delete file %s on ftp server" % filename_jpg)
         except IndexError:
             logging.info("no ba in the past to delete on FTP server")
+
+
+    def upload_log_file(self):
+        logging.info("upload log file to server")
+
+        try:
+            movie_list = ListDir.list_directory(env_variables.trailer_directory, 'mp4')
+            slide_list = ListDir.list_directory(env_variables.trailer_directory, 'jpg')
+            write_in_file = self._print_file_list(movie_list, slide_list)
+
+            self.cwd('/')
+            self.cwd(env_variables.ftp_upload_dir)
+            
+            with open(env_variables.ftp_uploaded_file, 'w') as file:
+                file.write(write_in_file)
+
+            with open(env_variables.ftp_uploaded_file,'r') as file:
+                self.storbinary('STOR cine35_player.log', file)
+        except:
+            logging.error("could not write or send file %s on ftp server" % env_variables.ftp_uploaded_file)
+
+
+    def _print_file_list(self, movie_list, slide_list):
+        to_return = "movies:\n"
+        for file in movie_list:
+            to_return += file + "\n"
+
+        to_return += "\nslides:\n"
+        for file in slide_list
+            to_return += file + "\n"
+
+        return to_return

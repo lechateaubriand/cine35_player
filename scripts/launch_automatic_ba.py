@@ -36,6 +36,11 @@ def ftp_server_operation():
         logging.error("erreurs en essayant de deleter les bande-annonces sur le serveur FTP", exc_info=True)
 
     try:
+        ftp.upload_log_file()
+    except Exception:
+        logging.error("erreurs en essayant d'uploader le fichier sur le serveur FTP", exc_info=True)
+
+    try:
         ftp.delete_past_trailer_in_ftpserver()
     except Exception:
         logging.error("erreurs en essayant de deleter les bande-annonces sur le serveur FTP", exc_info=True)

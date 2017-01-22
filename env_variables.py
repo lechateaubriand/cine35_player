@@ -57,9 +57,11 @@ ftp_server = 'ftp.jurocozo.net'
 ftp_port = '21'
 ftp_login = 'jurocozoue'
 ftp_home_dir = 'bande_annonces'
+ftp_upload_dir = 'logs'
 ftp_filematch = '*.mp4'
 nb_files_per_boot = 2
 ftp_bapd_file = '/var/bapd/reference'
+ftp_uploaded_file = '/var/log/cine35_player/list_of_directories.log'
 
 
 ################
