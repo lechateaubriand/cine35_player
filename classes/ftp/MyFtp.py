@@ -13,9 +13,6 @@ class MyFtp(FTP):
     def __init__(self):
         FTP.__init__(self, env_variables.ftp_server)
         try:
-            password = str(self._get_word())
-            print(password)
-            logging.info(password)
             self.login(env_variables.ftp_login, self._get_word())
         except Exception:
             logging.error("could not log in on FTP server", exc_info=True)
@@ -27,11 +24,10 @@ class MyFtp(FTP):
     def _get_word(self):
         """ function used to get file from ftp server"""
         with open(env_variables.ftp_bapd_file, 'rb') as f:
-            mon_unpick = pickle.Unpickler(f)
-            unpick_data = mon_unpick.load()
-        password = decrypt('etoilecinema', str(unpick_data))
-        logging.info("password: %s" % password)
-        return password
+            unpick = pickle.Unpickler(f)
+            unpick_data = unpick.load()
+        in_bytes = decrypt('etoilecinema', unpick_data)
+        return str(in_bytes,'utf-8')
 
     def download_trailer_from_ftpserver(self):
         """
