@@ -123,10 +123,10 @@ class MyFtp(FTP):
             self.cwd('/')
             self.cwd(env_variables.ftp_upload_dir)
             
-            with open(env_variables.ftp_uploaded_file, 'w') as file:
+            with open(env_variables.ftp_uploaded_file, 'wb') as file:
                 file.write(write_in_file)
 
-            with open(env_variables.ftp_uploaded_file,'r') as file:
+            with open(env_variables.ftp_uploaded_file,'rb') as file:
                 self.storlines('STOR cine35_player.log', file)
         except:
             logging.error("could not write or send file %s on ftp server" % env_variables.ftp_uploaded_file)
