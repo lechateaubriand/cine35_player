@@ -4,15 +4,29 @@
 
     <div class="paragraphe">
         <h2 class="blue">liste de toutes les bandes annonces:</h2>
-        {% for ba in whole_ba_list %}
-            <p class="white align_left">{{ ba }}</p>
+        {% for trailer in trailer_list %}
+            <p class="white align_left">{{ trailer }}</p>
         {% endfor %}
     </div>
 
     <div class="paragraphe">
         <h2 class="blue">liste de tous les slides:</h2>
-        {% for slide in whole_slide_list %}
+        {% for slide in slide_list %}
             <p class="white align_left">{{ slide }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="paragraphe">
+        <h2 class="blue">liste des films diffusés en boucle:</h2>
+        {% for looped_movie in looped_movie_list %}
+            <p class="white align_left">{{ looped_movie }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="paragraphe">
+        <h2 class="blue">liste des slides diffusés en boucle:</h2>
+        {% for looped_slide in looped_slide_list %}
+            <p class="white align_left">{{ looped_slide }}</p>
         {% endfor %}
     </div>
 

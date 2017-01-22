@@ -1,15 +1,8 @@
-import sys
-import os
+import os.path
 import pickle
 import subprocess
-try:
-    sys.path.append(os.environ['HOME_BA'])
-except:
-    print("error in HOME_BA environment variable")
 import env_variables
-from time import sleep
-import logging
-import logging.config
+import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
 
 
@@ -22,10 +15,3 @@ def stop():
 def shutdown():
     logging.info('#### PROCEDURE ARRET CLASSIQUE --- shutdown par bouton wakeup de telecommande')
     subprocess.call(['sudo', 'shutdown', '-h', 'now'])
-
-
-
-if __name__ == "__main__":
-    stop()
-    sleep(3)
-    shutdown()

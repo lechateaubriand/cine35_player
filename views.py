@@ -1,22 +1,14 @@
 # all the imports
-import os
+import os.path
+import pickle
+import subprocess
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 import env_variables
-from classes.MyPlaylist import MyPlaylist
-from classes.MyBaThread import BaOmxThread
-from classes.MyBaList import MyBaList
-from classes.MySlideList import MySlideList
-from random import shuffle
+from classes.util.ListDir import ListDir
 import scripts.stop_automatic_ba
 import scripts.launch_automatic_ba
-import shutil
 import logging, logging.config
-import sys
-import pickle
-from time import sleep
-import subprocess
-import datetime
 logging.config.dictConfig(env_variables.LOGGING)
 
 # create our little application :)
@@ -34,14 +26,25 @@ def index():
 
 @app.route('/show_playlist')
 def show_playlist():
-    # selectionner tous les repertoires du lieu de stockage
-    # et les mettre sous forme de dictionnaire
-    # numero de semaine: [liste des fichiers]
-    my_ba_list = MyBaList().ba_list_all
-    whole_ba_list = sorted([x.filename for x in my_ba_list])
-    my_slide_list = MySlideList().slide_list_all
-    whole_slide_list = sorted([x.filename for x in my_slide_list])
-    return render_template('show_playlist.html', whole_ba_list=whole_ba_list, whole_slide_list=whole_slide_list)
+    
+    trailer_list = ListDir.list_directory(env_variables.trailer_directory, 'mp4')
+    sorted_trailer_list = sorted([os.path.basename(x) for x in trailer_list])
+
+    slide_list = ListDir.list_directory(env_variables.trailer_directory, 'jpg')
+    sorted_slide_list = sorted([os.path.basename(x) for x in slide_list])
+
+    looped_movie_list = ListDir.list_directory(env_variables.looped_movie_directory, 'mp4')
+    sorted_looped_movie_list = sorted([os.path.basename(x) for x in looped_movie_list])
+
+    looped_slide_list = ListDir.list_directory(env_variables.looped_slide_directory, 'jpg')
+    sorted_looped_slide_list = sorted([os.path.basename(x) for x in looped_slide_list])
+
+
+    return render_template('show_playlist.html', 
+                           trailer_list=sorted_trailer_list, 
+                           slide_list=sorted_slide_list, 
+                           looped_movie_list=sorted_looped_movie_list, 
+                           looped_slide_list=sorted_looped_slide_list)
 
 
 @app.route('/launch_playlist_all_prog')
@@ -49,8 +52,6 @@ def launch_playlist_all_prog():
     """
     lancement de la lecture des ba dont la date de programmation n'est pas depassee
     """
-    playlist = MyPlaylist().playlist
-    logging.info("Rasberry: %s" % str(env_variables.omx))
     scripts.launch_automatic_ba.main()        
     return render_template('main_page.html')
 

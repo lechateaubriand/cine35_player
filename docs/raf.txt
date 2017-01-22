@@ -1,0 +1,8 @@
+# fait:
+# strategy pattern pour insert et play concernant les trailers
+# adpatation du site web et des scripts de lancement
+
+# raf
+# adapter MyFtp -- a tester
+# adapter carte_fidelite -- a tester
+# adapter next
