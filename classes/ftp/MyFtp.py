@@ -134,7 +134,7 @@ class MyFtp(FTP):
             to_return += file + "\n"
 
         to_return += "\nslides:\n"
-        for file in slide_list
+        for file in slide_list:
             to_return += file + "\n"
 
         return to_return
