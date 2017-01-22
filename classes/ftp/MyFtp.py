@@ -23,10 +23,12 @@ class MyFtp(FTP):
 
     def _get_word(self):
         """ function used to get file from ftp server"""
-        with open(env_variables.ftp_bapd_dir, 'rb') as f:
+        with open(env_variables.ftp_bapd_file, 'rb') as f:
             mon_unpick = pickle.Unpickler(f)
             unpick_data = mon_unpick.load()
-        return decrypt('etoilecinema', unpick_data)
+        password = decrypt('etoilecinema', unpick_data)
+        logging.info("password: %s" % password)
+        return password
 
     def download_trailer_from_ftpserver(self):
         """

@@ -44,21 +44,22 @@ looped_movies = [{ 'name': '2025_12_01__carte_fidelite.mp4', 'start_index': 0, '
 # LOOPED SLIDES
 ################
 looped_slide_directory = '/var/cine35/looped_slide'
-looped_slides = [{ 'name': '2025_12_12__halloween.jpg', 'start_index': 1, 'loop_step': 1 }]
+#looped_slides = [{ 'name': '2025_12_12__halloween.jpg', 'start_index': 1, 'loop_step': 1 }]
+looped_slides = []
 looped_slide_duration = 7
 
 
 ################
 # FTP SERVER
 ################
-ftp = False
-ftp_server = 'ftp.cluster003.ovh.net'
+ftp = True
+ftp_server = 'ftp.jurocozo.net'
 ftp_port = '21'
 ftp_login = 'jurocozoue'
 ftp_home_dir = 'bande_annonces'
 ftp_filematch = '*.mp4'
 nb_files_per_boot = 2
-ftp_bapd_dir = '/var/bapd/reference'
+ftp_bapd_file = '/var/bapd/reference'
 
 
 ################
