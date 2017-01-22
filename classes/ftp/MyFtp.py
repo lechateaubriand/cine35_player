@@ -123,7 +123,7 @@ class MyFtp(FTP):
             self.cwd('/')
             self.cwd(env_variables.ftp_upload_dir)
             
-            with open(env_variables.ftp_uploaded_file, 'wb') as file:
+            with open(env_variables.ftp_uploaded_file, 'w') as file:
                 file.write(write_in_file)
 
             with open(env_variables.ftp_uploaded_file,'rb') as file:
