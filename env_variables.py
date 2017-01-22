@@ -58,6 +58,7 @@ ftp_login = 'jurocozoue'
 ftp_home_dir = 'bande_annonces'
 ftp_filematch = '*.mp4'
 nb_files_per_boot = 2
+ftp_bapd_dir = '/var/bapd/reference'
 
 
 ################

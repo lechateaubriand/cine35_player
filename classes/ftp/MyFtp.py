@@ -23,7 +23,7 @@ class MyFtp(FTP):
 
     def _get_word(self):
         """ function used to get file from ftp server"""
-        with open('/var/bapd/refence', 'rb') as f:
+        with open(env_variables.ftp_bapd_dir, 'rb') as f:
             mon_unpick = pickle.Unpickler(f)
             unpick_data = mon_unpick.load()
         return decrypt('etoilecinema', unpick_data)
