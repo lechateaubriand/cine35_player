@@ -1,5 +1,6 @@
 import os
 import time
+import datetime
 import env_variables
 from classes.util.ListDir import ListDir
 from ftplib import FTP
@@ -126,13 +127,15 @@ class MyFtp(FTP):
                 file.write(write_in_file)
 
             with open(env_variables.ftp_uploaded_file,'r') as file:
-                self.storbinary('STOR cine35_player.log', file)
+                self.storlines('STOR cine35_player.log', file)
         except:
             logging.error("could not write or send file %s on ftp server" % env_variables.ftp_uploaded_file)
             raise
 
     def _print_file_list(self, movie_list, slide_list):
-        to_return = "movies:\n"
+        now = datetime.datetime.now()
+        to_return = str(now)
+        to_return += "\nmovies:\n"
         for file in movie_list:
             to_return += file + "\n"
 
