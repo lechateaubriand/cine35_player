@@ -81,6 +81,9 @@ class MyFtp(FTP):
         """
         logging.info("in delete_past_ba_in_ftpserver")
 
+        self.cwd('/')
+        self.cwd(env_variables.ftp_home_dir)
+
         ftp_files_mp4 = self.nlst(env_variables.ftp_filematch) # filter the file listing
         logging.info("list of files on ftp server: %s" % ftp_files_mp4)
 
@@ -126,7 +129,7 @@ class MyFtp(FTP):
                 self.storbinary('STOR cine35_player.log', file)
         except:
             logging.error("could not write or send file %s on ftp server" % env_variables.ftp_uploaded_file)
-
+            raise
 
     def _print_file_list(self, movie_list, slide_list):
         to_return = "movies:\n"
