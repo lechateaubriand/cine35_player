@@ -55,7 +55,7 @@ class ListDir:
                 os.remove(each)
 
     @staticmethod
-    def convert_files_into_list_of_dict(self, filepath_list):
+    def convert_files_into_list_of_dict(filepath_list):
         """
         fonction that converts a list of filepath [/media/usb/2016_8_26__titre_film1.mp4, /media/usb/2016_8_26__titre_film2.mp4]
         into a list of dict:
