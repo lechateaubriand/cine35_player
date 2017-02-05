@@ -37,7 +37,10 @@ random_play = True
 # LOOPED MOVIES
 ################
 looped_movie_directory = '/var/cine35/looped_movie'
-looped_movies = [{ 'name': '2025_12_01__carte_fidelite.mp4', 'start_index': 0, 'loop_step': 2 }]
+#looped_movies = [{ 'name': '2025_12_01__carte_fidelite.mp4', 'start_index': 0, 'loop_step': 2 }]
+looped_movies = [{ 'name': '2017_03_14__cine35EnFete.mp4', 'start_index': 0, 'loop_step': 3 },
+                  { 'name': '2017_03_09__festivalCourtsMetrage.mp4', 'start_index': 2, 'loop_step': 3 },
+                  { 'name': '2025_12_01__carte_fidelite.mp4', 'start_index': 4, 'loop_step': 3 }]
 
 
 ################
