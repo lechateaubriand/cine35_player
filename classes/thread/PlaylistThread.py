@@ -4,7 +4,7 @@ import time
 import pickle
 import os.path
 import env_variables
-from classes.content.PSlide import PSlide
+from classes.content.Slide import Slide
 import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
 
@@ -81,7 +81,7 @@ class PlaylistThread(threading.Thread):
         env_variables.lock.release()
 
         # si demande d'arret, on remet le slide black pour ne pas rester sur le slide d'annonce
-        background_slide = PSlide(env_variables.background_image, 0)
+        background_slide = Slide(env_variables.background_image, 0)
         background_slide.play(self)
 
         if time_status is True:

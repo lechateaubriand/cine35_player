@@ -1,6 +1,6 @@
 import os.path
 from time import time, strptime, mktime
-
+from collections import OrderedDict
 
 class ListDir:
 
@@ -73,3 +73,15 @@ class ListDir:
             l_dict["filepath"] = each
             list_to_return.append(l_dict)
         return list_to_return
+
+    @staticmethod
+    def sort_by_start_index(looped_path_list):
+        """
+        function to sort a list of looped_movie or looped_slide by descending start_index
+        """
+        dict_from_looped_path = {}
+        for each in looped_path_list:
+            dict_from_looped_path[each] = os.path.basename(each).split("__")[1]
+        ordered_dict = OrderedDict(sorted(dict_from_looped_path.items(), key=lambda x: x[1], reverse=True))
+        return ordered_dict.keys()
+

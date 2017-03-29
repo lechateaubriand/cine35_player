@@ -37,25 +37,19 @@ random_play = True
 # LOOPED MOVIES
 ################
 looped_movie_directory = '/var/cine35/looped_movie'
-#looped_movies = [{ 'name': '2025_12_01__carte_fidelite.mp4', 'start_index': 0, 'loop_step': 2 }]
-looped_movies = [{ 'name': '2017_03_14__cine35EnFete.mp4', 'start_index': 0, 'loop_step': 3 },
-                  { 'name': '2017_03_09__festivalCourtsMetrage.mp4', 'start_index': 2, 'loop_step': 3 },
-                  { 'name': '2025_12_01__carte_fidelite.mp4', 'start_index': 4, 'loop_step': 3 }]
 
 
 ################
 # LOOPED SLIDES
 ################
 looped_slide_directory = '/var/cine35/looped_slide'
-#looped_slides = [{ 'name': '2025_12_12__halloween.jpg', 'start_index': 1, 'loop_step': 1 }]
-looped_slides = []
 looped_slide_duration = 7
 
 
 ################
 # FTP SERVER
 ################
-ftp = True
+ftp = False
 ftp_server = 'ftp.jurocozo.net'
 ftp_port = '21'
 ftp_login = 'jurocozoue'
@@ -70,6 +64,7 @@ ftp_uploaded_file = '/var/log/cine35_player/list_of_directories.log'
 ################
 #  LOGS
 ################
+log_file = "/var/log/cine35_player/cine35_player.log"
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -88,7 +83,7 @@ LOGGING = {
         'file': {
             'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'default_formatter',
-            'filename': '/var/log/cine35_player/cine35_player.log',
+            'filename': log_file,
             'maxBytes': 50000,
             'backupCount': 3,
         }

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from classes.play.IPlay import IPlay
-from classes.content.PSlide import PSlide
+from classes.content.Slide import Slide
 from omxplayer import OMXPlayer
 from dbus.exceptions import DBusException
 from time import sleep
@@ -21,7 +21,7 @@ class PlayMovie(IPlay):
 
         # affichage d'un ecran noir pour ne pas voir l'ecran de la ba precedente
         # brievement avant le changement d'ecran
-        background_slide = PSlide(env_variables.background_image, 1)
+        background_slide = Slide(env_variables.background_image, 1)
         background_slide.play(play_thread)
         logging.info("ba: %s, status: %s" % (singleContentMovie.filepath, player.playback_status()))                        
 

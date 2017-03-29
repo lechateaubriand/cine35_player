@@ -7,10 +7,10 @@ import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
 
 
-class PSlide(SingleContent):
+class Slide(SingleContent):
 
     def __init__(self, filepath, display_duration):
-        super(PSlide, self).__init__(filepath, InsertAtEnd(), PlaySlide(display_duration))
+        super(Slide, self).__init__(filepath, InsertAtEnd(), PlaySlide(display_duration))
 
 
 
