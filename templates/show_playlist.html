@@ -3,6 +3,13 @@
 {% block content %}
 
     <div class="paragraphe">
+        <h2 class="blue">playlist en cours::</h2>
+        {% for content in playlist %}
+            <p class="white align_left">{{ content }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="paragraphe">
         <h2 class="blue">liste de toutes les bandes annonces:</h2>
         {% for trailer in trailer_list %}
             <p class="white align_left">{{ trailer }}</p>

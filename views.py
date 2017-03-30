@@ -27,6 +27,9 @@ def index():
 @app.route('/show_playlist')
 def show_playlist():
     
+    playlist_file = os.path.join(env_variables.stopnextprevious_dir, env_variables.playlist_file)
+    playlist = pickle.load(open(playlist_file, "rb"))
+
     trailer_list = ListDir.list_directory(env_variables.trailer_directory, 'mp4')
     sorted_trailer_list = sorted([os.path.basename(x) for x in trailer_list])
 
@@ -41,6 +44,7 @@ def show_playlist():
 
 
     return render_template('show_playlist.html', 
+                           playlist = playlist,
                            trailer_list=sorted_trailer_list, 
                            slide_list=sorted_slide_list, 
                            looped_movie_list=sorted_looped_movie_list, 

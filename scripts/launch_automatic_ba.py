@@ -83,6 +83,11 @@ def main():
     playlist = Playlist().playlist
     if env_variables.omx is True:
         if not env_variables.lock.locked():
+            # stockage de la playlist en cours pour le site web
+            web_file = os.path.join(env_variables.stopnextprevious_dir, env_variables.playlist_file)
+            playlist_file = [x.filename for x in playlist]
+            pickle.dump(web_file, open(playlist_file, "wb"))
+
             # initialisation a stop = False pour le fichier stop.p
             stop = True
             save_file = os.path.join(env_variables.stopnextprevious_dir, env_variables.stop_file)
