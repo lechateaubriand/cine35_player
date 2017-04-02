@@ -24,7 +24,7 @@ playlist_file = 'playlist.p'
 # DIVERS
 ################
 omx = True
-background_image = '/var/cine35/static/black.jpg'
+background_image = '/var/cine35/static/2025_12_01__black.jpg'
 
 
 ################
