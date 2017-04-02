@@ -23,4 +23,4 @@ class SingleContent(IContent):
         return chaine
 
     def get_filename(self):
-        return self.filename
+        return [self.filename]
