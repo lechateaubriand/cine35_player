@@ -87,7 +87,7 @@ def main():
             web_file = os.path.join(env_variables.stopnextprevious_dir, env_variables.playlist_file)
             playlist_filenames = []
             for each in playlist:
-                playlist_filenames.extends(each.get_filename())
+                playlist_filenames.extend(each.get_filename())
             pickle.dump(web_file, open(playlist_file, "wb"))
 
             # initialisation a stop = False pour le fichier stop.p
