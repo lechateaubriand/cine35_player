@@ -20,3 +20,6 @@ class Trailer(IContent):
         to_print = str(self.movie) + "\n"
         to_print += str(self.slide)
         return to_print
+
+    def get_filename(self):
+        return [self.movie.filename, self.slide.filename]

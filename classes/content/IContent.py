@@ -20,3 +20,6 @@ class IContent:
 
     def __str__(self):
         raise NotImplementedError
+
+    def get_filename(self):
+        raise NotImplementedError

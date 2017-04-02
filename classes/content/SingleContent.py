@@ -21,3 +21,6 @@ class SingleContent(IContent):
         chaine += ','.join([self.filepath, self.end_date])
         chaine += "]"
         return chaine
+
+    def get_filename(self):
+        return self.filename
