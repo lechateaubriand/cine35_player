@@ -22,4 +22,4 @@ class Trailer(IContent):
         return to_print
 
     def get_filename(self):
-        return self.movie.filename.extend(self.slide.filename)
+        return self.movie.get_filename().extend(self.slide.get_filename())
