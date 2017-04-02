@@ -17,13 +17,14 @@ stopnextprevious_dir = os.path.join(home_player, 'play_files')
 next_file = 'next.p'
 previous_file = 'previous.p'
 stop_file = 'stop.p'
+playlist_file = 'playlist.p'
 
 
 ################
 # DIVERS
 ################
 omx = True
-background_image = '/var/cine35/static/2025_12_01__black.jpg'
+background_image = '/var/cine35/static/black.jpg'
 
 
 ################
