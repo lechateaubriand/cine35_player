@@ -88,7 +88,7 @@ def main():
             playlist_filenames = []
             for each in playlist:
                 playlist_filenames.extend(each.get_filename())
-            pickle.dump(web_file, open(playlist_file, "wb"))
+            pickle.dump(playlist_filenames, open(web_file, "wb"))
 
             # initialisation a stop = False pour le fichier stop.p
             stop = True
