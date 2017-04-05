@@ -11,7 +11,7 @@ class SingleContent(IContent):
 
     def __init__(self, filepath, insert_behaviour, play_behaviour, static=False):
         super(SingleContent, self).__init__(insert_behaviour, play_behaviour)
-        if static = False:
+        if static == False:
             self.filepath = filepath
             self.filename = os.path.basename(filepath)
             self.end_date = self.filename.split("__")[0]
