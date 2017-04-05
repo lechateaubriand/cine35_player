@@ -24,6 +24,7 @@ playlist_file = 'playlist.p'
 # DIVERS
 ################
 omx = True
+# image name shall respect YYYY_MM_DD__name.jpg
 background_image = '/var/cine35/static/2025_12_01__black.jpg'
 
 
@@ -51,14 +52,14 @@ looped_slide_duration = 7
 # FTP SERVER
 ################
 ftp = False
-ftp_server = 'ftp.jurocozo.net'
+ftp_server = ''
 ftp_port = '21'
-ftp_login = 'jurocozoue'
+ftp_login = ''
 ftp_home_dir = 'bande_annonces'
 ftp_upload_dir = 'logs'
 ftp_filematch = '*.mp4'
 nb_files_per_boot = 2
-ftp_bapd_file = '/var/bapd/reference'
+ftp_bapd_file = ''
 ftp_uploaded_file = '/var/log/cine35_player/list_of_directories.log'
 
 
