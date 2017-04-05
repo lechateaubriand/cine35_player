@@ -9,13 +9,19 @@ logging.config.dictConfig(env_variables.LOGGING)
 
 class SingleContent(IContent):
 
-    def __init__(self, filepath, insert_behaviour, play_behaviour):
+    def __init__(self, filepath, insert_behaviour, play_behaviour, static=False):
         super(SingleContent, self).__init__(insert_behaviour, play_behaviour)
-        self.filepath = filepath
-        self.filename = os.path.basename(filepath)
-        self.end_date = self.filename.split("__")[0]
-        self.end_date_epoch = mktime(strptime(self.end_date, "%Y_%m_%d"))
-
+        if static = False:
+            self.filepath = filepath
+            self.filename = os.path.basename(filepath)
+            self.end_date = self.filename.split("__")[0]
+            self.end_date_epoch = mktime(strptime(self.end_date, "%Y_%m_%d"))
+        else:
+            self.filepath = filepath
+            self.filename = os.path.basename(filepath)
+            self.end_date = "2030_01_12"
+            self.end_date_epoch = mktime(strptime(self.end_date, "%Y_%m_%d"))
+            
     def __str__(self):
         chaine = "["
         chaine += ','.join([self.filepath, self.end_date])

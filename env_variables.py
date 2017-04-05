@@ -25,7 +25,7 @@ playlist_file = 'playlist.p'
 ################
 omx = True
 # image name shall respect YYYY_MM_DD__name.jpg
-background_image = '/var/cine35/static/2025_12_01__black.jpg'
+background_image = os.path.join(home_player, 'static', 'black.jpg')
 
 
 ################

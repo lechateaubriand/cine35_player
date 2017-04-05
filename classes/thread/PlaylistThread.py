@@ -18,7 +18,7 @@ class PlaylistThread(threading.Thread):
         super(PlaylistThread, self).__init__()
         self.playlist = playlist
         self.timer_in_seconds = timer_in_seconds
-        self.name = "etoile_cinema"
+        self.name = "cine35_player"
         self.stoprequest = threading.Event()
         self.nextrequest = threading.Event()
         self.previousrequest = threading.Event()
@@ -81,7 +81,7 @@ class PlaylistThread(threading.Thread):
         env_variables.lock.release()
 
         # si demande d'arret, on remet le slide black pour ne pas rester sur le slide d'annonce
-        background_slide = Slide(env_variables.background_image, 0)
+        background_slide = Slide(env_variables.background_image, 0, static=True)
         background_slide.play(self)
 
         if time_status is True:
