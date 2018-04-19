@@ -14,4 +14,4 @@ def stop():
 
 def shutdown():
     logging.info('#### PROCEDURE ARRET CLASSIQUE --- shutdown par bouton wakeup de telecommande')
-    subprocess.call(['sudo', 'shutdown', '-h', 'now'])
+    subprocess.call(['sudo', 'shutdown', '-P', 'now'])

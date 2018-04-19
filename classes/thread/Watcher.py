@@ -21,6 +21,7 @@ class Watcher(threading.Thread):
         this function starts the tread that will play the playlist
         then it launch the watching of stop.p, previous.p and next.p files
         """
+        logging.info("watcher started")
         self.playlist_thread.start()
         
         # indicate the ba are played
