@@ -11,10 +11,24 @@ from time import sleep
 import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
 
-lirc.init('telecommande', blocking=False)
+lirc_loop_max = 300
+lirc_loop = 0
+while lirc_loop < lirc_loop_max:
+    sockid = lirc.init('telecommande', blocking=False)
+    if sockid is not None:
+        break
+    lirc_loop +=1
+
+if lirc_loop == lirc_loop_max:
+    logging.error('echec de la connexion avec lirc')
+    raise RuntimeError('echec de la connexion avec lirc')
+
+launch_automatic_ba.clean()
+launch_automatic_ba.main()
+
 while True:
     ircode = lirc.nextcode()
-    print(ircode)
+    #print(ircode)
     if len(ircode) != 0:
 
         if ircode[0] == 'play':
