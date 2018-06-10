@@ -54,22 +54,26 @@ class PlaylistThread(threading.Thread):
     
                     # sortie de la boucle for si stop = True
                     if self.stoprequest.isSet() or time_status:
+                        logging.debug("in ThreadPlaylist: stop requested")
                         break
 
                     # si next, clear du signal et on continue la boucle immediatement
                     if self.nextrequest.isSet():
+                        logging.debug("in ThreadPlaylist: next requested")
                         i = i + 1
                         self.nextrequest.clear()
                         continue
     
                     # si previous, clear du signal et on continue la boucle immediatement
                     if self.previousrequest.isSet():
+                        logging.debug("in ThreadPlaylist: previous requested")
                         i = i - 1
                         self.previousrequest.clear()
                         continue 
     
                     # pas d'action: poursuite de la boucle while permettant de parcourir la playlist
                     i = i + 1
+                    logging.debug("in ThreadPlaylist: loop number: " + str(i))
                 
             except IndexError:
                 # partie de code utilisee dans le cas:

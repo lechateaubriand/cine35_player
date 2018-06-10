@@ -92,7 +92,7 @@ LOGGING = {
     },
     'root': {
         'handlers': ['file'],
-        'level': 'INFO'
+        'level': 'DEBUG'
     }
 }
 

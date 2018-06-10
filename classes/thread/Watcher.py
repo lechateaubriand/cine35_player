@@ -52,10 +52,13 @@ class Handler(FileSystemEventHandler):
 
     def on_modified(self, event):
         if not event.is_directory and event.src_path.endswith(env_variables.next_file):
+            logging.debug("in Watcher: next detected")                        
             self.playlist_thread.next()
 
         if not event.is_directory and event.src_path.endswith(env_variables.previous_file):
+            logging.debug("in Watcher: previous detected")                        
             self.playlist_thread.previous()
 
         if not event.is_directory and event.src_path.endswith(env_variables.stop_file):
+            logging.debug("in Watcher: stop detected")                        
             self.playlist_thread.stop()
