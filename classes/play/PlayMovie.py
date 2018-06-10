@@ -21,7 +21,9 @@ class PlayMovie(IPlay):
         try:
             player = OMXPlayer(singleContentMovie.filepath, args=['-o', 'hdmi', '-b', '--no-osd'])
             player.play()
-            logging.debug("after play - ba: %s, status: %s" % (singleContentMovie.filepath, player.playback_status()))                        
+            logging.debug("after play - before warm-up - ba: %s, status: %s" % (singleContentMovie.filepath, player.playback_status()))                        
+            time.sleep(5)
+            logging.debug("after play - after warm-up - ba: %s, status: %s" % (singleContentMovie.filepath, player.playback_status()))                        
         except Exception as e:
             logging.error(str(e))
 
