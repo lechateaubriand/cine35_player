@@ -19,7 +19,7 @@ class PlayMovie(IPlay):
         function qui lance une bande-annonce dans omx player
         """
         try:
-            player = OMXPlayer(singleContentMovie.filepath, args=['-o', 'hdmi', '-b', '--no-osd'])
+            player = OMXPlayer(singleContentMovie.filepath, args=['-o', 'hdmi', '-b', '--no-osd'], pause=False)
             player.play()
             logging.debug("after play - before warm-up - ba: %s, status: %s" % (singleContentMovie.filepath, player.playback_status()))                        
             sleep(5)
@@ -56,5 +56,4 @@ class PlayMovie(IPlay):
                 break
             except Exception as e:
                 logging.error(str(e), exc_info=1)
-                player.quit()
                 break
