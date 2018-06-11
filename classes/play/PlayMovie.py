@@ -36,7 +36,8 @@ class PlayMovie(IPlay):
         # tant que la ba n'est pas fini ou stoppee, on attend
         while True:
             try:
-                if player.playback_status() == "Playing" and not play_thread.stoprequest.isSet() \
+                if player.playback_status() == "Playing" \
+                and not play_thread.stoprequest.isSet() \
                 and not play_thread.previousrequest.isSet() \
                 and not play_thread.nextrequest.isSet():
                     sleep(1)
@@ -52,5 +53,6 @@ class PlayMovie(IPlay):
                 player.quit()
                 break
             except Exception as e:
-                logging.error(str(e))
-                raise
+                logging.error(str(e), exc_info=1)
+                player.quit()
+                break
