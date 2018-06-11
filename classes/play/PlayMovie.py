@@ -51,3 +51,6 @@ class PlayMovie(IPlay):
                 logging.debug("dbus exception, ba ended")
                 player.quit()
                 break
+            except Exception as e:
+                logging.error(str(e))
+                raise
