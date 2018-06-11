@@ -9,8 +9,8 @@ import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
 #logging.getLogger('omxplayer').setLevel(logging.CRITICAL)
 #logging.getLogger('dbus').setLevel(logging.CRITICAL)
-logging.getLogger('omxplayer').setLevel(logging.ERROR)
-logging.getLogger('dbus').setLevel(logging.ERROR)
+logging.getLogger('omxplayer').setLevel(logging.DEBUG)
+logging.getLogger('dbus').setLevel(logging.INFO)
 
 class PlayMovie(IPlay):
 
