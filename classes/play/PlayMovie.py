@@ -20,10 +20,8 @@ class PlayMovie(IPlay):
         """
         try:
             player = OMXPlayer(singleContentMovie.filepath, args=['-o', 'hdmi', '-b', '--no-osd'], pause=False)
-            player.play()
-            logging.debug("after play - before warm-up - ba: %s, status: %s" % (singleContentMovie.filepath, player.playback_status()))                        
             sleep(5)
-            logging.debug("after play - after warm-up - ba: %s, status: %s" % (singleContentMovie.filepath, player.playback_status()))                        
+            logging.info("ba: %s, status: %s" % (singleContentMovie.filepath, player.playback_status()))                        
         except Exception as e:
             logging.error(str(e), exc_info=1)
             player.quit()
@@ -33,7 +31,6 @@ class PlayMovie(IPlay):
         # brievement avant le changement d'ecran
         background_slide = Slide(env_variables.background_image, 1, static=True)
         background_slide.play(play_thread)
-        logging.info("after background - ba: %s, status: %s" % (singleContentMovie.filepath, player.playback_status()))                        
 
         # tant que la ba n'est pas fini ou stoppee, on attend
         while True:
