@@ -25,7 +25,9 @@ class PlayMovie(IPlay):
             sleep(5)
             logging.debug("after play - after warm-up - ba: %s, status: %s" % (singleContentMovie.filepath, player.playback_status()))                        
         except Exception as e:
-            logging.error(str(e))
+            logging.error(str(e), exc_info=1)
+            player.quit()
+            return
 
         # affichage d'un ecran noir pour ne pas voir l'ecran de la ba precedente
         # brievement avant le changement d'ecran
