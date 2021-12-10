@@ -7,7 +7,7 @@ import threading
 ################
 home_player = '/home/pi/my_envs/cine35_player'
 trailer_directory = '/var/cine35/trailer'
-shutdown_timer = 5400
+shutdown_timer = 999999999999999999999999999999999999999999999999
 
 
 ################
@@ -92,7 +92,7 @@ LOGGING = {
     },
     'root': {
         'handlers': ['file'],
-        'level': 'DEBUG'
+        'level': 'INFO'
     }
 }
 

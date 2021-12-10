@@ -7,10 +7,8 @@ from time import sleep
 import env_variables
 import logging, logging.config
 logging.config.dictConfig(env_variables.LOGGING)
-#logging.getLogger('omxplayer').setLevel(logging.CRITICAL)
-#logging.getLogger('dbus').setLevel(logging.CRITICAL)
-logging.getLogger('omxplayer').setLevel(logging.DEBUG)
-logging.getLogger('dbus').setLevel(logging.INFO)
+logging.getLogger('omxplayer').setLevel(logging.CRITICAL)
+logging.getLogger('dbus').setLevel(logging.CRITICAL)
 
 class PlayMovie(IPlay):
 
